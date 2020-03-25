@@ -54,8 +54,7 @@
                  <div class="profile_wrapper">
                      <div class="profile_wrapper_edit">
                           <h3><span class="gray">紹介：</h3>
-
-                          <%= f.text_field :intro, placeholder: "自己紹介※最大40文字", rows:"2" ,cols:"20",class:"form-control"%>
+                          <%= f.text_field :intro, placeholder: "自己紹介※最大40文字", maxlength: "40" ,class:"form-control"%>
                      </div>
                   
                  </div>

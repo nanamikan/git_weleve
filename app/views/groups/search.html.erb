@@ -5,11 +5,20 @@
     <p><%= @g_keyword %>に対応するイベントは存在しません</p>
     <p>他のキーワードで検索してください</p>
   <% else %>
-    <div class="group_index">
-      <%= @groups.each do |group| %>
-        <div class="each_group">
-         <!--<div class="image" style="background-image: url(%= rails_blob_path(group.image) %>) ">-->
-           <h2><%= group.name %></h2>
+    <div class="event_index">
+      <% @groups.each do |group| %>
+        <div class="event">
+           <div class="event_bottom">
+            <% if group.image.attached? %>
+              <div class="group_image" style="background-image: url(<%= rails_representation_path(group.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) ">
+              </div>
+            <% else %>
+              <div class="group_image" style="background-color: gray ">
+              </div>
+            <% end %>
+            <div class="event_group">
+              <%= link_to "#{group.name}",  group_path(group), method: :get , class: "group"%>
+            </div>
          </div>
         </div>
       <% end %>
@@ -17,4 +26,7 @@
     </div>
   <% end %>  
 <% end %>
-<%= link_to '検索ページへ戻る',form_path,method: :get  %>
+
+<%= link_to form_path  do %>
+  <%= image_tag "back.png" %>
+<% end %>

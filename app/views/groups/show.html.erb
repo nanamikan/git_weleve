@@ -49,13 +49,11 @@
                   <% else %> 
                   <!--full_profile?がfalseなら-->
                      <% if current_student.groups.present? %>
-                      <% if current_student.groups.first.id==@group.id %>
-                        <% if current_student.connections.first.authority %>
+                      <% if current_student.groups.first.id==@group.id&&current_student.connections.first.authority  %>
                           <%= link_to "プロフィールを完成させよう", edit_group_path(@group),class:"complete" %>
-                        <% end %>
                       <% end %>
                     <% end %>
-                    
+                         <p style="text-align: center">まだプロフィールがありません</p>
                  <% end %>
                  
                </div>
@@ -63,12 +61,12 @@
                <div class="var">
                     <% if current_student.groups.present? %>
                         <!--ログイン中の生徒がグループアカウントを保持-->
-                      <% if current_student.groups.first.id==@group.id %>
-                         <% if current_student.connections.first.authority %>
-                            
-                              <%= link_to 'ユーザーアカウントへ', authorize_update_path %>
-                            
-                         <% end %>
+                      <% if current_student.groups.first.id==@group.id &&  current_student.connections.first.authority%>
+                      <div class="var_half">
+                          <%= link_to 'ユーザーアカウントへ', authorize_update_path %>
+                      </div>
+                             
+                             
                        <% end %>
                    <% end %>
                </div>

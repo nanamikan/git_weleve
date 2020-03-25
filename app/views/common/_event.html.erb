@@ -1,10 +1,11 @@
 <div class="col-xs-10 col-lg-4">
   <div class="event">
-    <div class="event_image">
+   
        <% if event.image.attached? %>
-        <%= image_tag event.image.variant(combine_options:{resize:"400x120^",crop:"400x120+0+0",gravity: :center}).processed %>
+         <div class="event_image"><%= image_tag event.image.variant(combine_options:{resize:"400x100^",crop:"400x100+0+0",gravity: :center}).processed %></div>
+         <% else %>
+         <div class="event_image" style="background-color: gray;"></div>
       <% end %>
-    </div>
     
       <div class="event_content">
         <div class="event_title">
@@ -41,16 +42,18 @@
       <% if current_student.connections.present? %>
       　<!--グループアカウントとしてログイン中なう-->
         <% if  current_student.connections.first.authority %>
-         <!--自分のグループアカウントのイベントでないなら-->
+         <!--自分のグループアカウントのイベントなら-->
           <% if event.group.id==current_student.groups.ids.first%>
-          <!--自分のグループアカウントのイベントなら-->
           
-           <%= link_to edit_group_event_path(event.group,event), method: :get  do%>
+          <div class="atag_wrapper">
+            <%= link_to edit_group_event_path(event.group,event), method: :get  do%>
              <%= image_tag "edit.png" %>
            <% end %>
            <%= link_to "/groups/#{event.group.id}/events/#{event.id}", method: :delete  do%>
              <%= image_tag "delete.png" %>
            <% end %>
+          </div>
+           
            
          <% end %>
            

@@ -16,5 +16,7 @@
   <% end %>
   
 <% end %>
- <%= link_to '検索ページへ戻る',form_path,method: :get  %>
-  <!--<span>%=image_tag'arrow.png'%></span>-->
+
+<%= link_to form_path  do %>
+  <%= image_tag "back.png" %>
+<% end %>
