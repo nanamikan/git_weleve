@@ -1,0 +1,8 @@
+<div class="event_index">
+  <% @events.each do |event| %>
+  <!--<div class="background_image" style="background-image: url('images.jpg')">-->
+    <%= render partial: "common/event", locals: { event: event,apply: @apply} %>
+  <% end %>
+  <%= paginate(@events) %>
+</div>
+

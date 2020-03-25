@@ -1,0 +1,20 @@
+<% if @g_keyword.blank?  %>
+   <p>キーワードを入力してください</p>
+<% else %>
+  <% if @groups.blank? %>
+    <p><%= @g_keyword %>に対応するイベントは存在しません</p>
+    <p>他のキーワードで検索してください</p>
+  <% else %>
+    <div class="group_index">
+      <%= @groups.each do |group| %>
+        <div class="each_group">
+         <!--<div class="image" style="background-image: url(%= rails_blob_path(group.image) %>) ">-->
+           <h2><%= group.name %></h2>
+         </div>
+        </div>
+      <% end %>
+    <%= paginate(@groups) %>
+    </div>
+  <% end %>  
+<% end %>
+<%= link_to '検索ページへ戻る',form_path,method: :get  %>

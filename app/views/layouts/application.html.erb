@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Weleve</title>
+    <%= csrf_meta_tags %> 
+    <!--クロスサイトリクエストフォージェリ(CSRF/Webアプリケーションに存在する脆弱性を利用した攻撃方法)の対策のために記述-->
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+           
+                <!--<header class="sticky-top">-->
+                <!--     <a href="/"><%= image_tag "no_shadow.png", class: 'logo_small' %></a>-->
+                     
+                <!--</header>-->
+      <div class="container-fluid">
+        <div class='row'>
+            <div class='col-xs-12 col-lg-12'>
+              <!--%= bootstrap_flash %>-->
+              <%= yield %>
+            </div>
+            
+             </div>
+              </div>
+    　
+      <% if student_signed_in? %>
+    <!--footerはcontainerクラスには含まない-->
+        <%= render partial: 'common/footer' %>
+      <% end %>
+      
+       
+    
+  </body>
+</html>
+
+

@@ -1,0 +1,65 @@
+<div class="row form">
+  <div class="col-lg-12">
+    <header>
+       <%= link_to group_path(@group)  %>
+         <%= image_tag "back.png" %>
+        <% end %>
+   </header>
+<!--ルーティングのパスはgroup_event_pathだが、form_forが求めてるタグはgroup_events_path-->
+<!--なので　url: group_event_path として無理やり単数形のパスにつなげる-->
+    <%= form_for (@event) ,url: group_event_path do |f| %>
+       <div class="form-group file">
+          <%= f.file_field :image, placeholder: "画像を変更する", autofocus: true , class: "form-control floating-label"%>
+       </div>
+      
+         <div class="col-xs-8 col-lg-3">
+             <div class="profile_wrapper">
+                <div class="profile_wrapper_edit">
+                  <h3><span class="gray">名前：</h3>
+                  <%= f.text_field :title, placeholder: "名前",autofocus: true %>         
+                </div>       
+             </div>
+         </div>
+         
+          <div class="col-xs-8 col-lg-3">
+             <div class="profile_wrapper">
+                <div class="profile_wrapper_edit">
+                  <h3><span class="gray">日付：</h3>
+                     <%= f.date_field :date, placeholder: "開催日時"  %>         
+                </div>       
+             </div>
+         </div>
+         
+         
+          <div class="col-xs-8 col-lg-3">
+             <div class="profile_wrapper">
+                <div class="profile_wrapper_edit">
+                 <h3><span class="gray">説明：</h3>
+                  <%= f.text_field :descrip, placeholder: "詳細※最大40文字", maxlength: "40"%>           
+                </div>       
+             </div>
+         </div>
+         
+          <div class="col-xs-8 col-lg-3">
+             <div class="profile_wrapper">
+                <div class="profile_wrapper_edit">
+                   <%= f.text_field :where, placeholder: "開催場所※最大6字",maxlength: "6" %>           
+                </div>       
+             </div>
+         </div>
+         
+         
+          <div class="col-xs-8 col-lg-3">
+             <div class="profile_wrapper">
+                <div class="profile_wrapper_edit">
+                    <%= f.submit "保存" ,class:"button_save" %>          
+                </div>       
+             </div>
+         </div>
+         
+    <% end %>
+    
+  </div>
+</div>
+
+

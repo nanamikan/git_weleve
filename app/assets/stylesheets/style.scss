@@ -1,0 +1,517 @@
+
+$lightblue: #d4d4ec;
+$orange: rgb(248,178,128);
+$deepblue: rgb(73,63,143);
+$middleblue:　rgb(132, 124);
+$white:  #f5f4f5;
+$gray :#ebebed;
+
+html,body{
+    height: 100%;
+}
+// @import url('https://fonts.googleapis.com/css?family=Lobster|Raleway:400,600&display=swap');
+body{
+  background-color: $white;
+  // font-weight: bold;
+  letter-spacing: 0.05em;
+  // padding-top: 60px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga", "kern";
+}
+@import url(//fonts.googleapis.com/css?family=Montserrat);
+* {
+  font-family: Montserrat, "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif !important;
+  
+}
+body,input,textarea{
+  font-size:　1.6rem;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  width: 100%;
+  // font-family: "yuGothic", sans-serif;
+  // box-sizing: box;　//ressで定義済み
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+h3 {
+  font-size: 0.9rem;
+}
+p,h4,h5,h6,a {
+  font-size: 0.8rem;
+}
+
+.row {
+  max-width: 600px;
+  width: 95%;
+  margin-left: 0 auto;
+  padding-bottom: 7vh;
+}
+
+a{
+  color :$deepblue;
+  text-decoration: none;
+  &:hover {
+    color: lighten($deepblue, 3%) !important;
+    // text-decoration: underline;
+  }
+}
+
+// formにcssを適用させるため初期化
+input,select,textarea,select{
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+  // 【Chrome】オートコンプリートのとき、背景を青色にしない
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px $white inset;
+}
+}
+
+h2{
+  text-align: center;
+}
+.container{
+  // top: 0.5vh;
+  overflow: scroll;
+  // margin: 0 10%;
+  -ms-overflow-style: none;    /* IE, Edge 対応 */
+  scrollbar-width: none;       /* Firefox 対応 */
+  padding-bottom: 7vh;
+  -ms-overflow-style: none;    /* IE, Edge 対応 */
+  scrollbar-width: none;       /* Firefox 対応 */
+    &::-webkit-scrollbar{
+    display: none;/* Chrome, Safari 対応 */
+  }
+}
+  
+
+.image_wrapper{
+  text-align: center;
+  // margin-bottom: 20px;
+  height: 30%;
+// position: relative;//本来の位置
+  .logo_big{
+        text-align: center;
+        
+        margin: 1% 10% 10%;
+        
+        @media screen and (max-width: 425px){
+          width: 90px;
+          margin: 10px;
+        }
+     @media screen and (max-width: 768px){
+          width: 120px;
+          margin: 10px;
+        }
+        
+        min-width: 200px;
+        min-height: 50px;
+    }
+     
+    // small{
+    //   color: $deepblue;
+    //   text-shadow: 0 0 1px #fff,
+    // }
+}
+
+
+.setup-form{
+  padding: 10%;
+  width: 80%;
+  min-width: 300px;
+  height: 80%;
+  background-color: #fff;
+  margin: 100px auto auto  auto ; 
+  // padding: 20% auto;
+  color : $deepblue;
+  border-radius: 5px;
+  .setup-title{
+    width: 100%;
+    height: 100%;
+    min-height: 80px;
+    // border-bottom: 2px solid $deepblue; 
+    margin: 0 auto 10%;
+    line-height: 1.8;
+    text-align: center;
+    vertical-align: middle;
+    h2{
+      font-weight: 500;
+      margin:  auto 0;
+      // display: inline-block;
+    }
+  }
+  .flash_message{
+    background-color: $orange;
+    margin: 1% 5%;
+    text-align: center;
+     .notice,.alert{
+    color: #fff;
+  }
+  }
+ 
+ .atag_wrapper{
+  width: 100%;
+  margin: 10% auto 0;
+      a{
+          display: inline-block;
+          width: 100%;
+          height: 5%;
+          text-align: center;
+          font-size: 1.2em; 
+          margin: 0 auto;
+          text-decoration: underline;
+        }
+    }
+ 
+  .field{
+    font-size: 1.5em;
+    margin: 5% auto;
+    display: flex;
+    justify-content: center;
+    @extend .form;
+    }
+    
+    .checkbox{
+      input{
+        min-width: 10px;
+      }
+    }
+     .actions{
+          height: 10%;
+          width: 70%;
+          max-width: 170px;
+          
+          margin: 0 auto;
+          
+          input[type=submit] {
+            width: 100%;
+            
+            font-size: 2.0em;
+            background-color: #493f8f;
+            @extend .button;
+            &:active{
+              transition: all 0.5s;
+            }
+          }
+        }
+        
+}
+
+.button{
+  display: inline-block;
+  text-decoration: none;
+  background: $deepblue;/*ボタン色*/
+  color: #fff;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  
+  &:active{
+     -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+  } 
+  
+}
+ .form{
+       border: none;
+            &:focus {
+            // box-shadow: 0 0 3px $lightblue;
+            border-bottom: 2px solid $lightblue;
+            /*フォーカスしたときのトランジション設定 すべてのプロパティが0.5秒で切り替わる*/
+            transition: all 0.5s;
+                  }
+        }
+header{
+  height: 8vh;
+  width: 100%;
+  position: fixed;//スクロールしても固定される
+  background-color:  $white;
+  // border-bottom: solid 4px $orange;
+  color: #fff;
+  line-height: 1.67;
+  display: flex;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  a{
+    position: relative;
+      .logo_small{
+        //直近の親要素はheaderボックスではなくaタグ
+        @media screen and (max-width: 768px){
+          width: 90px;
+          margin: 10px;
+        }
+        // width: 80%;
+        // height: auto;
+        width: 128px;
+        margin: 15px;
+    }
+  }
+  
+}
+
+
+
+// .event_index{
+//   position: relative;
+//   top: 8vh;
+//   left: 30px;
+// }
+
+li{
+  list-style: none;
+}
+
+
+
+  
+  .search_wrapper{
+          display: inline-block;
+          // display: flex;
+          // justify-content: center;
+           border: 2px solid darken($gray,10%) ;
+           width: 100%;
+           margin: 50px auto;
+          // height: 40px;
+          padding: 5%;
+          background-color: $white;
+          border-radius: 5px;
+        .search{
+          margin: 0;
+        }
+        input,img{
+         width: 100%; 
+        }
+}
+
+
+    
+footer{
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid darken($gray, 10%);
+  height: 7vh;
+  position: fixed;
+  bottom: 0;
+  background-color: $white;
+  
+   
+    
+    .footer_wrapper{
+        display: flex;
+    justify-content: space-around;
+      .icon{
+        width: 100%;
+        // width: calc(100%/3);
+        text-align: center;
+        // vertical-align: center;
+      img{
+        // margin: 3% auto;
+      }
+    }
+   
+  }
+ 
+}
+
+.event_index{
+  // margin: 0 10%;
+  overflow: visible;
+  .event_none{
+    text-align: center;
+  }
+  .event{
+    max-height: 270px;
+    max-width: 400px;
+    border-radius: 20px;
+    border: 1px solid darken($gray, 10%);
+    background-color: $white;
+    margin: 20px auto;
+    overflow: hidden;
+    .event_image{
+      max-height: 120px;
+      height: 60%;
+      img{
+        height: 100%;
+      }
+    }
+    .event_title{
+      margin: 10px;
+    }
+    .event_content{
+      display: flex;
+      .event_descrip{
+        // display: flex;
+        .descrip{
+          // display: flex;
+        }
+      }
+    }
+    .event_bottom{
+      display: flex;
+      max-height: 60px;
+      height: 100%;
+      border-top: 0.3px solid darken($gray, 3%);
+        .group_image{
+          min-height: 50px;
+          height: 80%;
+          min-width: 50px;
+          width: auto;
+          // min-height: 18px;
+          border-radius: 50%;
+          background-color: $gray;
+          margin: auto 3%;
+          background-position: center;
+        }
+        .event_group{
+          width: 90%;
+          height: 100%;
+          margin: auto 0;
+         
+        }
+        
+        a{
+          margin: 0 auto;
+        }
+          .apply{
+            @extend .button;
+            // box-shadow: 1 1 none;
+            height: 60%;
+            width: 40%;
+            min-width: 81px;
+            margin: auto  5%;
+            text-align: center;
+            a{
+              border-radius: 4px;
+            }
+        }
+    }
+  }
+  
+}
+
+.apply_form{
+  text-align: center;
+  margin: 30% auto 0;
+  background-color: $white;
+}
+
+
+.pagination{
+  text-align: center;
+}
+
+
+.profile{
+  
+  min-height: 200px;
+  background-color: $white;
+  // border: 1px solid darken($gray,10%);
+  // box-shadow: 2px 2px 5px 5px white;
+  border-radius: 5px;
+  .col-xs-8 .col-lg-3{
+    min-height: 10px;
+  }
+
+.icon_image{
+  text-align: center;
+   width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid darken($gray,10%) ;
+  img{
+   
+   
+  
+  }
+}
+
+.gray{
+  color: gray;
+}
+
+ .intro{
+   
+    .profile_wrapper{
+      
+    height: 100%;
+    }
+  }
+.profile_wrapper{
+  
+  border-bottom: 2px solid darken($gray,10%) ;
+  margin: 5% auto;
+  
+  // display: flex;
+   .profile_wrapper_edit{
+     font-weight: bold;
+     h3{
+       min-width: 50px;
+       margin: 5px 1px 5px 0;
+     }
+     display: flex;
+     
+     
+     
+   }
+}
+
+.edit{
+  margin: 0 5% 0 80% ;
+}
+
+}
+
+
+.var{
+  background-color: $white;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid darken($gray,10%);
+  border-bottom: 1px solid darken($gray,10%);
+  // box-shadow: 2px 2px 5px 5px white;
+  border-radius: 2px;
+  display: inline-block;
+  
+  a{
+    text-align: center;
+    width: 45%;
+    margin: 2% 2%;
+  }
+  
+}
+
+.apply_form{
+  background-color: white;
+  max-width: 300px;
+  margin: 30% auto;
+  color: $middleblue;
+  border-radius: 5px;
+  h3{
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+
+.form-save{
+            width: 100%;
+            display: flex;
+            text-align: center;
+            
+             .button_save{
+            @extend .button;
+            box-shadow: none;
+            min-width: 50px;
+            margin: 5% auto;
+          }
+}

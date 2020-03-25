@@ -1,0 +1,8 @@
+<div class="col-xs-6 col-lg-4">
+  <div class="apply_form">
+    <h3>本当に応募しますか？</h3>
+    <%= link_to '一覧へ戻る',events_path(@event), method: :get %>
+    <%= link_to 'はい',  event_applies_path(@event.id), method: :post %>
+  </div>
+</div>
+ 

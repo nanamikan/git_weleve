@@ -1,0 +1,40 @@
+<footer class="fixed-bottom">
+  <!--ユーザーがログインしてるならという条件をこのファイルを呼び出す前に行う-->
+  <div class="footer_wrapper">
+      <div class="icon">
+           <%= link_to root_path do %>
+             <%= image_tag "home.png" %>
+           <% end %>
+       </div>
+   
+  
+        <div class="icon">
+            <%= link_to  form_path do %>
+              <%= image_tag "search.png" %>
+            <% end %>
+        </div>
+  
+       <div class="icon">
+           <% if current_student.groups.present? %>
+      <!--現在ログイン中のユーザーがグループアカウントを保有-->
+          <% if current_student.connections.first.authority %>
+          <!--グループアカウントとしてログイン中-->
+             <%= link_to group_path(current_student.groups.first) do  %>
+               <%= image_tag "profile.png" %>
+             <% end %>
+          <% else %>
+           <!--グループアカウントとしてログイン中ではない-->
+            <%= link_to student_path(current_student) do %>
+              <%= image_tag "profile.png" %>
+            <% end %>
+          <% end %>  
+       <% else %>
+        <!--現在ログイン中のユーザーがグループアカウントを保有してない-->
+         <%= link_to student_path(current_student) do %>
+          <%= image_tag "profile.png" %>
+         <% end %>
+         
+    　 <% end %>
+      </div>
+  </div>
+</footer>

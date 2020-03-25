@@ -1,0 +1,20 @@
+<% if @e_keyword.blank?  %>
+  <p>キーワードを入力してください</p>
+<% else %>
+  <% if @events.present? %>
+    <div class="event_index">
+      <% @events.each do |event| %>
+      <!--<div class="image" style="background-image: url(%= rails_blob_path(event.group.image) %>) "></div>-->
+        <%= render partial: "common/event", locals: { event: event } %>
+      <% end %>
+     <%= paginate(@events) %>
+    </div>
+   
+  <% else %>
+     <p><%= @e_keyword %>に対応するイベントは存在しません</p>
+     <p>他のキーワードで検索してください</p>
+  <% end %>
+  
+<% end %>
+ <%= link_to '検索ページへ戻る',form_path,method: :get  %>
+  <!--<span>%=image_tag'arrow.png'%></span>-->

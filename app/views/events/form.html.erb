@@ -1,0 +1,22 @@
+
+      <div class="search_wrapper">
+    <div class="col-xs-8 col-lg-6">
+      <div class="search">
+         <%= form_tag('/events/search', method: :get,class: "form-group") do %>
+        <input placeholder="イベント名で検索※最大10文字" name="e_keyword" maxlength= 10 type="text" class="form-controller">
+      <% end %>
+      </div>
+     
+      </div>
+   
+   <div class="col-xs-8 col-lg-6">
+     <div class="search">
+      <%= form_tag(search_groups_path, method: :get,class: "form-group") do %>
+        <input placeholder="団体名で検索※最大10文字" name="g_keyword" maxlength= 10 type="text" class="form-controller">
+      <% end %>
+      </div>
+   </div>
+   
+</div>
+
+

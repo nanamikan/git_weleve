@@ -1,0 +1,69 @@
+<div class="row form">
+  <div class="col-lg-12">
+     <div class="col-xs-10 col-lg-4">
+        <div class="profile">
+          <%= form_for(@group) do |f| %>
+             <!--<div class="image" style="background-image: url(%= rails_blob_path(@group.image) %>) ">-->
+             <% if @group.image.attached? %>
+               <div class="icon_image" style="background-image: url(<%= rails_representation_path(@group.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) "></div>
+            <% else %>
+               <div class="icon_image" style="background-color: gray "></div>
+            <% end %>
+            <div class="form-group file">
+               <%= f.file_field :image, placeholder: "画像アップロード", autofocus: true ,  class: "form-control floating-label" %>
+            </div>
+           
+            <div class="col-xs-8 col-lg-3">
+                 <div class="profile_wrapper">
+                     <div class="profile_wrapper_edit">
+                         <h3><span class="gray">名前：</span></h3>
+                         <%= f.text_field :name, placeholder: "団体名",autofocus: true, class: "form-control" %>  
+                     </div>
+                 </div>
+            </div>
+            
+            
+             <div class="col-xs-8 col-lg-3">
+                 <div class="profile_wrapper">
+                   <div class="profile_wrapper_edit">
+                         <h3><span class="gray">分類：</span></h3>
+                      <%= f.text_field :category,　placeholder: "サークル/体育会",maxlength: "5" , class: "form-control"  %> 
+                   </div>
+                 </div>
+            </div>
+            
+             <div class="col-xs-8 col-lg-3">
+                 <div class="profile_wrapper">
+                     <div class="profile_wrapper_edit">
+                       <h3><span class="gray">活動：</span></h3>
+                       <%= f.text_field :what_to_do, placeholder: "例)バスケ/ボランティア※最大10文字", maxlength: "10" , class: "form-control"%>           
+                  </div>
+                  </div>
+            </div>
+            
+             <div class="col-xs-8 col-lg-3">
+                 <div class="profile_wrapper">
+                   <div class="profile_wrapper_edit">
+                       <!--<div class="intro">-->
+                            <h3><span class="gray">紹介：</span></h3>
+                            <%= f.text_field :intro, placeholder: "特徴/アピールポイント※最大40文字" ,  rows:"2" ,cols:"20",class: "form-control"%>  
+                       <!--</div>-->
+                    </div>
+                 </div>
+            </div>
+            
+            <div class="col-xs-8 col-lg-3">
+              <div class="form-save">
+                <%= f.submit "保存", class:"button_save" %>
+              </div>
+            </div>
+         <% end %>
+            <%= link_to group_path(@group) do%>
+              <%= image_tag "back.png" %>
+            <% end %>
+        </div>
+    
+      </div>
+  </div>
+</div>
+

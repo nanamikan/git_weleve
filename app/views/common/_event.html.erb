@@ -1,0 +1,83 @@
+<div class="col-xs-10 col-lg-4">
+  <div class="event">
+    <div class="event_image">
+       <% if event.image.attached? %>
+        <%= image_tag event.image.variant(combine_options:{resize:"400x120^",crop:"400x120+0+0",gravity: :center}).processed %>
+      <% end %>
+    </div>
+    
+      <div class="event_content">
+        <div class="event_title">
+          <h3><%= event.title %></h3>
+        </div>
+         <div class="event_descrip">
+            <ul class="descrip">
+                <li>
+                  <p>日時：<%= event.date.month %>/<%= event.date.day %></p>
+                </li>
+                <li>
+                  <p>場所：<%= event.where %></p>
+                </li>
+            </ul>
+            <%= simple_format(event.descrip)%>
+          </div>
+      </div>
+    <!--<div class="event_image" style="background-image: url%= rails_blob_path(event.image) %) "></div>-->
+    <div class="event_bottom">
+        <% if event.group.image.attached? %>
+          <div class="group_image" style="background-image: url(<%= rails_representation_path(event.group.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) ">
+            
+          </div>
+        <% else %>
+          <div class="group_image" style="background-color: gray ">
+            
+          </div>
+        <% end %>
+      <div class="event_group">
+        <%= link_to "#{event.group.name}",  group_path(event.group), method: :get , class: "group"%>
+      </div>
+        <!--% binding.pry %>-->
+      <!--グループアカウントが存在  -->
+      <% if current_student.connections.present? %>
+      　<!--グループアカウントとしてログイン中なう-->
+        <% if  current_student.connections.first.authority %>
+         <!--自分のグループアカウントのイベントでないなら-->
+          <% if event.group.id==current_student.groups.ids.first%>
+          <!--自分のグループアカウントのイベントなら-->
+          
+           <%= link_to edit_group_event_path(event.group,event), method: :get  do%>
+             <%= image_tag "edit.png" %>
+           <% end %>
+           <%= link_to "/groups/#{event.group.id}/events/#{event.id}", method: :delete  do%>
+             <%= image_tag "delete.png" %>
+           <% end %>
+           
+         <% end %>
+           
+         <% else %>
+         <!--グルアカ保持してるけどauthority==falseだよ-->
+         <!--応募済みなら-->
+              <% if event.applies.where(student_id: current_student.id).where(event_id: event.id).present? %>
+               　
+               　　<%= link_to 'キャンセル', "/applies/#{event.applies.where(student_id: current_student.id).where(event_id: event.id).first.id}/events/#{event.id}/delete", method: :get , class: "apply" %>
+               <!--初めての応募なら-->
+              <% else %>
+               　<%= link_to '参加する', new_event_apply_path(event.id), method: :get , class: "apply" %>
+              <% end %>
+        <% end %>
+      
+      <% else %>
+       <!--グループアカウントが存在しないなら  -->
+        <% if event.applies.where(student_id: current_student.id).where(event_id: event.id).present? %>
+            　
+         　<%= link_to 'キャンセル', "/applies/#{ event.applies.where(student_id: current_student.id).where(event_id: event.id).first.id}/events/#{event.id}/delete", method: :get , class: "apply" %>
+            
+        <% else %>
+            <%= link_to '参加する', new_event_apply_path(event.id), method: :get , class: "apply" %>
+        <% end %>
+      <% end %>
+      
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="col-xs-6 col-lg-4">
+  <div class="apply_form">
+    <h3>本当に参加をキャンセルしますか？</h3>
+   <!--前のページじゃなくて一覧に戻ってしまう-->
+    <%= link_to '一覧へ戻る',events_path(@event), method: :get %>
+    <%= link_to 'はい',  event_apply_path(@event,@apply), method: :delete %>
+  </div>
+</div>
