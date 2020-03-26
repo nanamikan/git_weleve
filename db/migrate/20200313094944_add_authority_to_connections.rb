@@ -20,8 +20,7 @@ class AddAuthorityToConnections < ActiveRecord::Migration[5.2]
 # よって
 # undefined method `authority' というエラーが発生してしまっていた
 # 一度authorityを削除してからもう一度作成する
-remove_column :connections, :authority, :boolean
-# add_column :connections, :authority, :boolean, default: false
+add_column :connections, :authority, :boolean, default: false
 
   end
 end
