@@ -14,11 +14,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head> 
   <body>
-           
-                <!--<header class="sticky-top">-->
-                <!--     <a href="/"><%= image_tag "no_shadow.png", class: 'logo_small' %></a>-->
-                     
-                <!--</header>-->
       <div class="container-fluid">
         <div class='row'>
             <div class='col-xs-12 col-lg-12'>
@@ -26,16 +21,13 @@
               <%= yield %>
             </div>
             
-             </div>
-              </div>
+        </div>
+      </div>
     　
       <% if student_signed_in? %>
     <!--footerはcontainerクラスには含まない-->
         <%= render partial: 'common/footer' %>
       <% end %>
-      
-       
-    
   </body>
 </html>
 
