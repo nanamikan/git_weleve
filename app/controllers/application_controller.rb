@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_up_path_for(resource)
-    root_path # ログイン後に遷移するpathを設定
+    new_student_session_path #新規登録後に遷移するpathを設定
   end
   
  
