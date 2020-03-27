@@ -11,7 +11,7 @@ class Group < ApplicationRecord
         has_many :events, dependent: :destroy
         
         
-         validates_presence_of :intro, :image, :category,:what_to_do
+         validates_presence_of :name
        
        def full_profile?
          name?&&category?&&what_to_do?&&intro?&&image.attached?  
