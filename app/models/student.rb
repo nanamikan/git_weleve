@@ -17,8 +17,8 @@ class Student < ApplicationRecord
 #   accepts_nested_attributes_for というkeyは、
 # 他のモデルを一括で更新、保存できるようにするもの
 
-# なぜかわからんが作用しない↓
-  validates_presence_of :intro, :image, :preference,:name,:grade
+
+  validates_presence_of  :password,:email,:grade
   # validates :email :password,:grade,:icon,:intro presence: true
   
   
