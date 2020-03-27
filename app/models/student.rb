@@ -22,22 +22,8 @@ class Student < ApplicationRecord
   # validates :email :password,:grade,:icon,:intro presence: true
   
   
-  # 画像用のカラムのサイズやデフォルト画像、画像ファイルの保存先を設定できます。
-#   has_attached_file :icon,
-#                     styles:  { medium: "100×100#",thumb: "100×100#" }
-                    
-#                     # has_attached_file :カラム名,
-#                     # styles:  { medium: "画像サイズ", thumb: "画像サイズ" }
-  
-#   # jpeg形式とpng形式を許可する場合
-#   # 、画像のバリデーションを設定します。サイズや画像の種類でバリデーションが可能
-#   validates_attachment_content_type :icon,
-#                                     content_type: ["image/jpg","image/jpeg","image/png"]
-# # rubyでは真偽値を返すメソッドには最後に?を付ける
+  # rubyでは真偽値を返すメソッドには最後に?を付ける
     def full_profile?
       name?&&preference?&&intro?&&image.attached?  
     end
-    
-    
-
 end

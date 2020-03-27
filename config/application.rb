@@ -13,7 +13,6 @@ module Weleve
     unless Rails.env.production?
       # config.load_defaults 5.2
       # config.web_console.whitelisted_ips = '61.89.88.135'
-      
     end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
