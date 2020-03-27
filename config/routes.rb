@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   devise_for :students
   
   root to: 'events#index'
-  
-  # resources :events
    
   resources :students,only:[:show,:edit,:update] 
   # do
