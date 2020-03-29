@@ -17,11 +17,6 @@ class Group < ApplicationRecord
          name?&&category?&&what_to_do?&&intro?&&image.attached?  
        end
        
-       
-        # has_attached_file :icon,
-        #              styles:  { medium: "100×100#", thumb: "100×100#" }
-                     
-        # validates_attachment_content_type :icon,
-                    # content_type: ["image/jpg","image/jpeg","image/png"]
+     
          
 end

@@ -5,3 +5,5 @@
 Group.create(id: 3, name: 'みかん同好会')
 Group.create(id: 4, name: '水泳体育会')
 # Connection.create(student_id: 11, group_id:  2)
+
+

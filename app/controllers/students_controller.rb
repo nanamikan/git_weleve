@@ -36,7 +36,9 @@ class StudentsController < ApplicationController
     @student=Student.find(params[:id])
     if @student.id==current_student.id
       # binding.pry
-      current_student.avatar.attach(update_params[:avatar])
+      if update_params[:avatar].present?
+         current_student.avatar.attach(update_params[:avatar])
+      end
       current_student.update(update_params)
     end
     redirect_to controller_path: 'show', id: @student.id
@@ -45,7 +47,7 @@ class StudentsController < ApplicationController
   private
   # deviseを利用したモデルではemailとpasswordしか受け付けないように設定されている
   def update_params
-    params.require(:student).permit(:id, :name, :preference, :grade, :intro, :avatar)
+    params.require(:student).permit(:name, :preference, :grade, :intro, :avatar)
     
   end
   

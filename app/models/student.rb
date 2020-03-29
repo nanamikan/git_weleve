@@ -18,8 +18,8 @@ class Student < ApplicationRecord
 # 他のモデルを一括で更新、保存できるようにするもの
 
 
-  validates_presence_of  :password,:email,:grade
-  # validates :email :password,:grade,:icon,:intro presence: true
+  validates_presence_of  :password,:email,:grade ,on: :create
+  validates_presence_of :intro ,:preference,:avatar,on: :update
   
   
   # rubyでは真偽値を返すメソッドには最後に?を付ける
