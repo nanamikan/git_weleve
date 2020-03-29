@@ -13,8 +13,7 @@ class StudentsController < ApplicationController
   def edit
     @student=Student.find(params[:id])
      if  current_student.id==@student.id
-         @group=current_student.groups.first
-
+        # @group=current_student.groups.first
      else
           redirect_to :show
      end
