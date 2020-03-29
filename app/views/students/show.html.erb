@@ -5,8 +5,8 @@
          <div class="profile">
             <% if @student.full_profile? %>
                <!--<h2>profile</h2>-->
-                   <% if @student.image.attached? %>
-                     <div class="icon_image" style="background-image: url(<%= rails_representation_path(@student.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) ">
+                   <% if @student.avatar.attached? %>
+                     <div class="icon_image" style="background-image: url(<%= rails_representation_path(@student.avatar.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) ">
                       </div>
                    <% else %>
                      <div class="icon_image" style="background-color: gray "></div>
@@ -45,15 +45,14 @@
                  <!--</div>-->
                   
            <% else %>
-           
+           <!--プロフィールが完成していないなら-->
              <% if current_student.id==@student.id %>
-                  <!--プロフィールが完成していないなら-->
-               <%= link_to "プロフィールを完成させよう！", edit_student_path(@student),class:"complete" %>
-               <% else %>
-               まだプロフィールが作成されていません
+               <%= link_to "プロフィールを完成させよう！", edit_student_path(@student), class:"complete" %>
+             <% else %>
+               <h3>まだプロフィールが作成されていません</h3>
              <% end %>
              
-             <% end %>
+           <% end %>
          </div>  <!--profile-->
          
         <div class="var">

@@ -1,4 +1,7 @@
 class StudentsController < ApplicationController
+  
+
+  
   def show
   # (1)自分のアカウントのプロフィールにアクセスした場合
   # (2)他人のアカウントのプロフィールにアクセスした場合
@@ -32,7 +35,8 @@ class StudentsController < ApplicationController
   def update
     @student=Student.find(params[:id])
     if @student.id==current_student.id
-      
+      # binding.pry
+      current_student.avatar.attach(update_params[:avatar])
       current_student.update(update_params)
     end
     redirect_to controller_path: 'show', id: @student.id
@@ -41,7 +45,7 @@ class StudentsController < ApplicationController
   private
   # deviseを利用したモデルではemailとpasswordしか受け付けないように設定されている
   def update_params
-    params.require(:student).permit(:name, :preference, :grade, :intro, :image)
+    params.require(:student).permit(:id, :name, :preference, :grade, :intro, :avatar)
     
   end
   

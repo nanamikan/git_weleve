@@ -1,7 +1,7 @@
 class Student < ApplicationRecord
 # ユーザーのレコードと画像を紐づけることができます
      # ユーザーテーブルにカラムを追加する必要はありません。
-  has_one_attached :image 
+  has_one_attached :avatar
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -24,6 +24,6 @@ class Student < ApplicationRecord
   
   # rubyでは真偽値を返すメソッドには最後に?を付ける
     def full_profile?
-      name?&&preference?&&intro?&&image.attached?  
+      name?&&preference?&&intro?&&avatar.attached?  
     end
 end
