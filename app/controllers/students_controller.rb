@@ -32,6 +32,7 @@ class StudentsController < ApplicationController
   def update
     @student=Student.find(params[:id])
     if @student.id==current_student.id
+      
       current_student.update(update_params)
     end
     redirect_to controller_path: 'show', id: @student.id
@@ -40,7 +41,8 @@ class StudentsController < ApplicationController
   private
   # deviseを利用したモデルではemailとpasswordしか受け付けないように設定されている
   def update_params
-    params.require(:student).permit(:name, :preference, :grade, :intro,:image)
+    params.require(:student).permit(:name, :preference, :grade, :intro, :image)
+    
   end
   
    def authorize(connection)

@@ -49,23 +49,13 @@ class GroupsController < ApplicationController
       if  current_student.groups.first.present?&&current_student.groups.first.id==@group.id&&current_student.connections.first.authority
          
            current_student.groups.first.update(update_params)
-            # binding.pry
+            
             redirect_to controller_path: 'show', id: @group.id
       else
            redirect_to :show
       end
     end
     
-    
-    
-    
-    def resize
-        if params[:image] != nil
-            img = MiniMagick::Image.read(params[:image])
-            img.resize "300x300"
-            # img.write "public/images/hoge.jpg"
-        end
-    end
     private
     def move_to_top
         redirect_to  controller: 'students', action: 'show'

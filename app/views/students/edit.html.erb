@@ -5,7 +5,7 @@
           
         <div class="profile">
             <!--このリンクに飛べるのは@student==current_studentの時のみ-->
-          <%= form_for current_student do |f| %>
+          <%= form_for (current_student) do |f| %>
               <% if current_student.image.attached? %>
                 <div class="icon_image" style="background-image: url(<%= rails_representation_path(current_student.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) "></div>
               <% else %>
