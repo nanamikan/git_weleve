@@ -36,6 +36,7 @@ class StudentsController < ApplicationController
     @student=Student.find(params[:id])
     if @student.id==current_student.id
       # binding.pry
+       logger.debug(update_params.inspect)
       if update_params[:avatar].present?
          current_student.avatar.attach(update_params[:avatar])
       end
