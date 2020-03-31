@@ -83,4 +83,6 @@ group :production do
 end
 
 gem 'aws-sdk-s3'
+# 絵文字使う
+gem 'font-awesome-rails'
 
