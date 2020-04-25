@@ -9,12 +9,12 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
     <div class="field">
-      <%= f.label :メールアドレス %><br />
+      <!--<= f.label :メールアドレス %><br />-->
       <%= f.email_field :email, autofocus: true, placeholder:"メールアドレス" , class:"form",autocomplete: "email" %>
     </div>
   
     <div class="field">
-      <%= f.label :パスワード  %><br />
+      <!--<= f.label :パスワード  %><br />-->
       <%= f.password_field :password,  placeholder:"パスワード", class:"form",autocomplete: "new-password" %>
     </div>
   
