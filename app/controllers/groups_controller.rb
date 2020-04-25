@@ -30,12 +30,12 @@ class GroupsController < ApplicationController
     
     def edit
         @conne=Connection.where(student_id: current_student.id).first
-        unless current_student.groups.present?&&@conne.authority
-            redirect_to :show
-        else
-           @group=current_student.groups.first
+        if current_student.groups.present?&&@conne.authority
+            @group=current_student.groups.first
            @grade=current_student.grade
-         
+            
+        else
+          redirect_to :show
         end
     end
     

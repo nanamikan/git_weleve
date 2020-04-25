@@ -1,5 +1,7 @@
 <% if @e_keyword.blank?  %>
-  <p>キーワードを入力してください</p>
+  <div class="apply_form">
+      <p>キーワードを入力してください</p>
+  </div>
 <% else %>
   <% if @events.present? %>
     <div class="event_index">
@@ -11,8 +13,10 @@
     </div>
    
   <% else %>
+   <div class="apply_form">
      <p><%= @e_keyword %>に対応するイベントは存在しません</p>
      <p>他のキーワードで検索してください</p>
+   </div>
   <% end %>
   
 <% end %>

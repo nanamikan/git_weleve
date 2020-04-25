@@ -49,10 +49,10 @@
           
           <div class="atag_wrapper">
             <%= link_to edit_group_event_path(event.group,event), method: :get  do%>
-             <%= image_tag "edit.png" %>
+             <%= image_tag "edit.png",:class => 'edit_event',:alt => 'edit_event' %>
            <% end %>
            <%= link_to "/groups/#{event.group.id}/events/#{event.id}", method: :delete  do%>
-             <%= image_tag "delete.png" %>
+             <%= image_tag "delete.png",:class => 'delete_event',:alt => 'delete_event' %>
            <% end %>
           </div>
            

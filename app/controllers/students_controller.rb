@@ -1,15 +1,13 @@
 class StudentsController < ApplicationController
   
-
-  
   def show
   # (1)自分のアカウントのプロフィールにアクセスした場合
   # (2)他人のアカウントのプロフィールにアクセスした場合
         @events=current_student.events.page(params[:page]).per(3).all.order("created_at DESC")
         # @events=Event.includes(:groups).all.order("created_at DESC").page(params[:page]).per(3)
         # @connection=Connection.where(student_id: current_student.id)
-        @student=Student.find(params[:id])
-        @group=Group.find(current_student.group_ids)
+        @student=current_student
+        @group=current_student.groups.first
         # redirect_to controller: 'events', action: 'index'
   end
   
@@ -49,7 +47,6 @@ class StudentsController < ApplicationController
   # deviseを利用したモデルではemailとpasswordしか受け付けないように設定されている
   def update_params
     params.require(:student).permit(:name, :preference, :grade, :intro, :avatar)
-    
   end
   
    def authorize(connection)

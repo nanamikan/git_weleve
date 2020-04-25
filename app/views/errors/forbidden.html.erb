@@ -1,0 +1,14 @@
+<div id="error">
+  <h1>403 Forbidden</h1>
+  <p>
+    <%=
+       case @exception
+       when  ApplicationController::IpAddressRejected
+         "あなたのIPアドレス(#{request.ip}からは利用できません)を"
+       else
+         "指定されたページを見る権限がありません"
+       end
+    %>
+    
+  </p>
+</div>

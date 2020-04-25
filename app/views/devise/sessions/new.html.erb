@@ -3,32 +3,25 @@
     <h2>ログイン</h2>
   </div>
   <div class="flash_message">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <P><%= alert %> </P>
+    <p><%= notice %></p>
   </div>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
     <div class="field">
-      <!--%= f.label :%><br />-->
+      <%= f.label :メールアドレス %><br />
       <%= f.email_field :email, autofocus: true, placeholder:"メールアドレス" , class:"form",autocomplete: "email" %>
     </div>
   
     <div class="field">
-      <!--<= f.label :パスワード %><br />-->
+      <%= f.label :パスワード  %><br />
       <%= f.password_field :password,  placeholder:"パスワード", class:"form",autocomplete: "new-password" %>
     </div>
   
-    <!--<div class="field">-->
-    <!--  %= f.label :団体名 %><br />-->
-    <!--  %= f.text_field :name %>-->
-    <!--</div>-->
-  
     <% if devise_mapping.rememberable? %>
        <div class='checkbox'>
-              <label>
                 <input id='user_remember_me' name='user[remember_me]' type='checkbox' value='1'>
                 <%= f.label :remember_me, 'ログイン情報を記憶する', class: 'memory-check' %>
-              </label>
           </div>
     <% end %>
   

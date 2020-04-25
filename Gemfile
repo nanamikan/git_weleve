@@ -54,8 +54,9 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 3.0'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -78,6 +79,7 @@ gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-material-design', '0.1.4'
 
+# herokuへのアップロード
 group :production do
   gem 'rails_12factor'
 end
@@ -85,4 +87,15 @@ end
 gem 'aws-sdk-s3'
 # 絵文字使う
 gem 'font-awesome-rails'
+gem 'rspec-rails'
+gem 'rails-controller-testing'
+# factoru-bot
+gem 'factory_bot_rails'
 
+group :test do
+  # gem 'capybara', '~> 2.4.1'
+  # 記述済み
+  gem 'faker'
+  gem 'launchy','~> 2.4.3'
+  gem 'rspec-retry'
+end

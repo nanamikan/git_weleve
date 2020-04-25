@@ -19,7 +19,7 @@
                              <% if current_student.connections.first.authority %>
                               <!--authorityがtrueなら-->
                                 <%= link_to edit_group_path(@group), {class:"edit"}  do %>
-                                  <%= image_tag "edit.png" %>
+                                  <%= image_tag "edit.png",:class => 'edit_student',:alt => 'edit_student' %>
                                   <% end %>
                              <% end %>
                           <% end %>
@@ -83,8 +83,8 @@
                             <% if current_student.groups.first.id==@group.id %>
                               <% if current_student.connections.first.authority %>
                                     
-                                  <%= link_to new_group_event_path(@group), method: :get do %>
-                                    <%= image_tag "new_event.png" %>
+                                  <%= link_to  new_group_event_path(@group), method: :get do %>
+                                    <%= image_tag "new_event.png", :class => 'new_event' , :alt => 'new_event'%>
                                   <% end %>
                               <% end %>
                             <% end %>

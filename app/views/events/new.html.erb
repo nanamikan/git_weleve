@@ -5,7 +5,7 @@
 <!--としてたけど適切なモデルを引き渡せないので-->
    <div class="col-xs-10 col-lg-4">
        <div class="profile">
-      <%= form_for [@group,@event]  do |f| %>
+      <%= form_for (@event) do |f| %>
       
        <div class="form-group file">
          <%= f.file_field :image, placeholder: "画像アップロード", autofocus: true ,  class: "form-control floating-label" %>
@@ -42,7 +42,7 @@
          <div class="profile_wrapper">
             <div class="profile_wrapper_edit">
               <h3><span class="gray">説明：</h3>
-                <%= f.text_field :descrip, placeholder: "詳細※最大70文字", maxlength: "70"%>
+                <%= f.text_field :descrip, placeholder: "詳細※最大40文字", maxlength: "40"%>
             </div>
           </div>
        </div>

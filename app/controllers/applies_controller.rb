@@ -4,7 +4,6 @@ class AppliesController < ApplicationController
      
   end
   def create 
-    
     @event=Event.find(params[:event_id])
     Apply.create(student_id: current_student.id, event_id: @event.id)
   end
@@ -15,18 +14,16 @@ class AppliesController < ApplicationController
   def delete_confirm
     @apply=Apply.find(params[:id])
     @event=Event.find(params[:event_id])
-   
   end
   
   
   def destroy
     @apply=Apply.find(params[:id])
-    # @event=Event.find(params[:event_id])
+    @event=Event.find(params[:event_id])
     
      if @apply.student_id==current_student.id
-       @apply.destroy 
+        @apply.destroy 
      end
-     
      redirect_to controller: 'events', action: 'index'
   end
   

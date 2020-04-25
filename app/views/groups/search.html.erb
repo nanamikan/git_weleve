@@ -1,9 +1,14 @@
 <% if @g_keyword.blank?  %>
-   <p>キーワードを入力してください</p>
+  <div class="apply_form">
+    <p>キーワードを入力してください</p>
+  </div>
+   
 <% else %>
   <% if @groups.blank? %>
-    <p><%= @g_keyword %>に対応するイベントは存在しません</p>
-    <p>他のキーワードで検索してください</p>
+    <div class="apply_form">
+      <p><%= @g_keyword %>に対応するイベントは存在しません</p>
+      <p>他のキーワードで検索してください</p>
+    </div>
   <% else %>
     <div class="event_index">
       <% @groups.each do |group| %>
