@@ -1,0 +1,71 @@
+@import "colors";
+
+.profile{
+  max-width: 300px;
+  // padding: 5%;
+  min-height: 200px;
+  margin: 50px auto 50px auto;
+  background-color: $white;
+  border-radius: 5px;
+  .col-xs-8 .col-lg-3{
+    min-height: 10px;
+  }
+
+.icon_image{
+  text-align: center;
+   width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid darken($gray,10%) ;
+}
+
+.gray{
+  color: gray;
+}
+
+.profile_wrapper{
+  @extend .profile_wrapper_common
+}
+
+ .intro{
+    .profile_wrapper{
+      height: 100%;
+    }
+  }
+.edit{
+  margin: 0 5% 0 80% ;
+}
+
+}
+
+.profile_wrapper_common{
+  border-bottom: 2px solid darken($gray,10%) ;
+  margin: 5% auto;
+  height: 30px;
+   .profile_wrapper_edit{
+     font-weight: bold;
+     h3{
+       min-width: 50px;
+      // margin: 5px 1px 5px 0;
+     }
+     display: flex;
+   }
+}
+
+.var{
+  background-color: $white;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid darken($gray,10%);
+  border-bottom: 1px solid darken($gray,10%);
+  // box-shadow: 2px 2px 5px 5px white;
+  border-radius: 2px;
+  display: inline-block;
+  display: flex;
+  text-align: center;
+  .var_half{
+    width: 50%;
+  }
+  
+}

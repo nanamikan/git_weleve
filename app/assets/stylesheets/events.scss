@@ -1,3 +1,77 @@
-// Place all the styles related to the events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+@import "style.scss";
+
+.event_index{
+  // margin: 0 10%;
+  overflow: visible;
+  .event_none{
+    text-align: center;
+  }
+  .event{
+    max-width: 400px;
+    border-radius: 20px;
+    border: 1px solid darken($gray, 10%);
+    background-color: $white;
+    margin: 20px auto;
+    overflow: hidden;
+    .event_image{
+      max-height: 100px;
+      min-height: 100px;
+      img{
+         height: 100px;
+      }
+    }
+    
+    .event_title{
+      margin: 10px;
+    }
+    .event_content{
+      display: flex;
+      
+    }
+    
+      .event_bottom{
+      display: flex;
+      max-height: 70px;
+      height: 100%;
+      border-top: 0.3px solid darken($gray, 3%);
+        .group_image{
+          min-height: 50px;
+          height: 80%;
+          min-width: 50px;
+          width: auto;
+          // min-height: 18px;
+          border-radius: 50%;
+          background-color: $gray;
+          margin: 3%;
+          background-position: center;
+        }
+        .event_group{
+          width: 90%;
+          height: 100%;
+          margin: auto 0;
+        }
+        
+       
+       .atag_wrapper{
+        a{
+          display: block;
+          margin: 8px;
+        }
+       }
+          .apply{
+            @extend .button;
+            // box-shadow: 1 1 none;
+            height: 60%;
+            width: 40%;
+            min-width: 81px;
+            margin: auto  5%;
+            text-align: center;
+            a{
+              border-radius: 4px;
+            }
+        }
+    }
+  }
+  
+}

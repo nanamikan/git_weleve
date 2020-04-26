@@ -1,9 +1,4 @@
-$lightblue: #d4d4ec;
-$orange: rgb(248,178,128);
-$deepblue: rgb(73,63,143);
-$middleblue:　rgb(132, 124);
-$white:  #f5f4f5;
-$gray :#ebebed;
+@import "colors";
 
 html,body{
     height: 100%;
@@ -116,88 +111,6 @@ h2{
 }
 
 
-
-.setup-form{
-  padding: 10%;
-  width: 80%;
-  min-width: 300px;
-  height: 80%;
-  background-color: #fff;
-  margin: 100px auto auto  auto ; 
-  // padding: 20% auto;
-  color : $deepblue;
-  border-radius: 5px;
-  .setup-title{
-    width: 100%;
-    height: 60%;
-    min-height: 60px;
-    // border-bottom: 2px solid $deepblue; 
-    margin: 0 auto 10%;
-    line-height: 1.8;
-    text-align: center;
-    vertical-align: middle;
-    border-bottom: 2px solid $deepblue;
-    h2{
-      font-weight: 500;
-      margin:  auto 0;
-      // display: inline-block;
-    }
-  }
-  
- 
- .checkbox{
-   display: flex;
-   input{
-     outline: solid;
-    // border: solid;
-     width: 5px;
-     height: 5px;
-   }
-   label{
-     width: 80%;
-   }
- }
- .atag_wrapper{
-  width: 100%;
-  margin: 10% auto 0;
-      a{
-          display: inline-block;
-          width: 100%;
-          height: 5%;
-          text-align: center;
-          font-size: 1.2em; 
-          margin: 0 auto;
-          text-decoration: underline;
-        }
-    }
- 
-  .field{
-    font-size: 1.5em;
-    margin: 5% auto;
-    display: flex;
-    height: 10%;
-    justify-content: center;
-    @extend .form
-    }
-        .actions{
-          height: 5%;
-          width: 70%;
-          max-width: 170px;
-          margin: 0 auto;
-          
-          input[type=submit] {
-            width: 100%;
-            font-size: 2.0em;
-            background-color: #493f8f;
-            @extend .button;
-            &:active{
-              transition: all 0.5s;
-            }
-          }
-        }
-        
-}
-
 .button{
   display: inline-block;
   text-decoration: none;
@@ -205,7 +118,6 @@ h2{
   color: #fff;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
-  
   &:active{
      -webkit-transform: translateY(4px);
     transform: translateY(4px);/*下に動く*/
@@ -223,85 +135,6 @@ h2{
                   }
         }
         
-header{
-  height: 8vh;
-  width: 100%;
-  position: fixed;//スクロールしても固定される
-  background-color:  $white;
-  // border-bottom: solid 4px $orange;
-  color: #fff;
-  line-height: 1.67;
-  display: flex;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  a{
-    position: relative;
-      .logo_small{
-        //直近の親要素はheaderボックスではなくaタグ
-        @media screen and (max-width: 768px){
-          width: 90px;
-          margin: 10px;
-        }
-        // width: 80%;
-        // height: auto;
-        width: 128px;
-        margin: 15px;
-    }
-  }
-  
-}
-
-
-  .search_wrapper{
-          display: flex;
-          // justify-content: center;
-           border: 2px solid darken($gray,10%) ;
-           width: 100%;
-           margin: 50px auto;
-          // height: 40px;
-          padding: 10px;
-          background-color: $white;
-          border-radius: 5px;
-        .search{
-          margin: 0;
-          height: 100%;
-          padding: 5%;
-          display: inline-block;
-          display: flex;
-          justify-content: center;
-          img{
-            margin: 5px;
-            width: 12%;
-            min-width: 25px;
-          }
-          
-          form{
-            margin-left: 5px;
-            ::placeholder {
-            
-            }
- 
-           input{
-                   width: 100%;
-                   height: 100%;
-                   margin: auto;
-                  }
-                  
-          } //form
-          
-        }//search
-        
-         .search_left{
-             .search{
-               border-right: 2px solid darken($gray,10%) ;
-             }
-           }
-        
-}
-
-
-    
 footer{
   width: 100%;
   margin: 0 auto;
@@ -330,179 +163,9 @@ footer{
  
 }
 
-.event_index{
-  // margin: 0 10%;
-  overflow: visible;
-  .event_none{
-    text-align: center;
-  }
-  .event{
-    // max-height: 270px;
-    max-width: 400px;
-    border-radius: 20px;
-    border: 1px solid darken($gray, 10%);
-    background-color: $white;
-    margin: 20px auto;
-    overflow: hidden;
-    .event_image{
-      max-height: 100px;
-      min-height: 100px;
-      img{
-         height: 100px;
-      }
-    }
-    
-    
-    .event_title{
-      margin: 10px;
-    }
-    .event_content{
-      display: flex;
-      
-    }
-    .event_bottom{
-      display: flex;
-      max-height: 70px;
-      height: 100%;
-      border-top: 0.3px solid darken($gray, 3%);
-        .group_image{
-          min-height: 50px;
-          height: 80%;
-          min-width: 50px;
-          width: auto;
-          // min-height: 18px;
-          border-radius: 50%;
-          background-color: $gray;
-          margin: 3%;
-          background-position: center;
-        }
-        .event_group{
-          width: 90%;
-          height: 100%;
-          margin: auto 0;
-        }
-        
-       
-       .atag_wrapper{
-        a{
-          display: block;
-          margin: 8px;
-        }
-       }
-          .apply{
-            @extend .button;
-            // box-shadow: 1 1 none;
-            height: 60%;
-            width: 40%;
-            min-width: 81px;
-            margin: auto  5%;
-            text-align: center;
-            a{
-              border-radius: 4px;
-            }
-        }
-    }
-  }
-  
-}
-
-.apply_form{
-  text-align: center;
-  margin: 30% auto 0;
-  background-color: $white;
-}
-
 
 .pagination{
   text-align: center;
-}
-
-
-.profile{
-  max-width: 300px;
-  // padding: 5%;
-  min-height: 200px;
-  margin: 50px auto 50px auto;
-  background-color: $white;
-  // border: 1px solid darken($gray,10%);
-  // box-shadow: 2px 2px 5px 5px white;
-  border-radius: 5px;
-  .col-xs-8 .col-lg-3{
-    min-height: 10px;
-  }
-
-.icon_image{
-  text-align: center;
-   width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  border-radius: 50%;
-  border: 2px solid darken($gray,10%) ;
-}
-
-.gray{
-  color: gray;
-}
-
-.profile_wrapper{
-  @extend .profile_wrapper_common
-}
-
- .intro{
-    .profile_wrapper{
-      height: 100%;
-    }
-  }
-.edit{
-  margin: 0 5% 0 80% ;
-}
-
-}
-
-
-
-.profile_wrapper_common{
-  border-bottom: 2px solid darken($gray,10%) ;
-  margin: 5% auto;
-  height: 30px;
-   .profile_wrapper_edit{
-     font-weight: bold;
-     h3{
-       min-width: 50px;
-      // margin: 5px 1px 5px 0;
-     }
-     display: flex;
-   }
-}
-
-.var{
-  background-color: $white;
-  width: 100%;
-  display: flex;
-  border-top: 1px solid darken($gray,10%);
-  border-bottom: 1px solid darken($gray,10%);
-  // box-shadow: 2px 2px 5px 5px white;
-  border-radius: 2px;
-  display: inline-block;
-  display: flex;
-  text-align: center;
-  .var_half{
-    width: 50%;
-  }
-  
-}
-
-.apply_form{
-  background-color: white;
-  max-width: 300px;
-  margin: 30% auto;
-  color: $middleblue;
-  border-radius: 5px;
-  h3{
-    display: inline-block;
-    margin: 0 auto;
-    width: 100%;
-  }
 }
 
 
@@ -527,9 +190,3 @@ footer{
    font-size: 12px;
 }
 
-
-
-
-.flash_message{
-   @extend .error_message
-  }
