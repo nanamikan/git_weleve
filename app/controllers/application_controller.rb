@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
     # before_action :メソッド名, if: :コントローラ名?
     
-    
-    
   include ErrorHandlers if Rails.env.productiion?
   
   def configure_permitted_parameters
