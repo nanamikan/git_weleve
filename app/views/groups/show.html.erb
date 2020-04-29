@@ -1,121 +1,91 @@
 <div class="row form">
   <div class="col-lg-12">
-             <div class="col-xs-10 col-lg-4">
-                <div class="profile">
-                   <% if @group.full_profile? %>
-                        <!--<h2>プロフィール</h2>-->
-                        <% if @group.image.attached? %>
-                          <div class="icon_image" style="background-image: url(<%= rails_representation_path(@group.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) "></div>
-                        <% else %>
-                          <div class="icon_image" style="background-color: gray ">
-                        <% end %>
-                        
-                         <% if current_student.groups.present? %>
-                        <!--ログイン中の生徒がグループアカウントを保持-->
-                          <% if current_student.groups.first.id==@group.id %>
-                           <!--今ログイン中のユーザーのグループが今から見るグループページのグループと一致するなら-->
-                          <!--@group.idは1だがcurrent_student.groups.idsだと[1]となるので一致しない-->
-                          <!--.firstを付けると1になる-->
-                             <% if current_student.connections.first.authority %>
-                              <!--authorityがtrueなら-->
-                                <%= link_to edit_group_path(@group), {class:"edit"}  do %>
-                                  <%= image_tag "edit.png",:class => 'edit_student',:alt => 'edit_student' %>
-                                  <% end %>
-                             <% end %>
-                          <% end %>
-                        <% end %>
-                        
-                          <h2><%= @group.name %></h2>
-                           <div class="col-xs-8 col-lg-3">
-                             <div class="profile_wrapper">
-                               <h3><span class="gray">分類：</span><%= @group.category %></h3>
-                             </div>
-                           </div>
-                           
-                           <div class="col-xs-8 col-lg-3">
-                            <div class="profile_wrapper">
-                              <h3><span class="gray">活動：</span><%= @group.what_to_do%></h3>
-                            </div>
-                          </div>
-                         
-                          <div class="col-xs-8 col-lg-3">
-                              <div class="intro">
-                                <div class="profile_wrapper">
-                                  <h3><span class="gray">紹介：</span> <%= @group.intro.blank??   "このグループの説明はありません" : @group.intro %></h3>
-                                </div>
-                              </div>
-                          </div>
-                   
-                  <% else %> 
-                  <!--full_profile?がfalseなら-->
-                     <% if current_student.groups.present? %>
-                      <% if current_student.groups.first.id==@group.id&&current_student.connections.first.authority  %>
-                          <%= link_to "プロフィールを完成させよう", edit_group_path(@group),class:"complete" %>
-                      <% end %>
-                    <% end %>
-                         <p style="text-align: center">まだプロフィールがありません</p>
-                 <% end %>
-                 
-               </div>
-               
-               <div class="var">
-                    <% if current_student.groups.present? %>
-                        <!--ログイン中の生徒がグループアカウントを保持-->
-                      <% if current_student.groups.first.id==@group.id &&  current_student.connections.first.authority%>
-                      <div class="var_half">
-                          <%= link_to 'ユーザーアカウントへ', authorize_update_path %>
-                      </div>
-                             
-                             
-                       <% end %>
-                   <% end %>
-               </div>
-            </div>
-            
+    <div class="col-xs-10 col-lg-4">
+      <div class="profile">
+        <% if @group.full_profile? %>
+              <!--<h2>プロフィール</h2>-->
+          <% if @group.image.attached? %>
+            <div class="icon_image" style="background-image: url(<%= rails_representation_path(@group.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) "></div>
+          <% else %>
+            <div class="icon_image" style="background-color: gray ">
+          <% end %>
           
-          <div class="col-xs-10 col-lg-4">
+          <% if @group.authorized?(current_student) %>
+            <%= link_to edit_group_path(@group), { class:"edit" }  do %>
+              <%= image_tag "edit.png",:class => 'edit_student',:alt => 'edit_student' %>
+            <% end %>
+          <% end %>  
+              
+          <h2><%= @group.name %></h2>
+           <!--<div class="col-xs-8 col-lg-3">-->
+           <div class="profile_wrapper">
+             <h3><span class="gray">分類：</span><%= @group.category %></h3>
+           </div>
+           <!--</div>-->
+           
+           <!--<div class="col-xs-8 col-lg-3">-->
+            <div class="profile_wrapper">
+              <h3><span class="gray">活動：</span><%= @group.what_to_do%></h3>
+            </div>
+          <!--</div>-->
          
-                  <% if @events.present? %>
-                    <h2><%= @group.name %>の新歓一覧 </h2>
-                    <div class="event_index">
-                         <% if current_student.groups.present? %>
-                        <!--ログイン中の生徒がグループアカウントを保持-->
-                            <% if current_student.groups.first.id==@group.id %>
-                              <% if current_student.connections.first.authority %>
-                                    
-                                  <%= link_to  new_group_event_path(@group), method: :get do %>
-                                    <%= image_tag "new_event.png", :class => 'new_event' , :alt => 'new_event'%>
-                                  <% end %>
-                              <% end %>
-                            <% end %>
-                          <% end %>
-                        <% @events.each do |event| %>
-                        <!--<div class="background_image" style="background-image: url('images.jpg')">-->
-                          <%= render partial: "common/event", locals: { event: event, group: @group } %>
-                           <!--主催者:%= event.group.name %>-->
-                        <% end %>
-                   </div>
-                  <%= paginate(@events) %>
-                  
-                  <% else %>
-                  
-                   <div class="event_index">
-                       <div class="event_none">
-                           <p>まだイベントはありません</p>
-                            <% if current_student.groups.present? %>
-                                <!--ログイン中の生徒がグループアカウントを保持-->
-                                <% if current_student.groups.first.id==@group.id %>
-                                  <% if current_student.connections.first.authority %>
-                                      <%= link_to "イベントを作成する",new_group_event_path(@group), class:"button"  %>
-                                  <% end %>
-                                <% end %>
-                            <% end %>
-                       </div>
-                        
-                   </div>
-                  <% end %>
-         </div> 
-      
+          <!--<div class="col-xs-8 col-lg-3">-->
+            <div class="intro">
+              <div class="profile_wrapper">
+                <h3><span class="gray">紹介：</span> <%= @group.intro.blank??   "このグループの説明はありません" : @group.intro %></h3>
+              </div>
+            </div>
+          <!--</div>-->
+        <% else %> 
+        <!--full_profile?がfalseなら-->
+          <% if @group.authorized?(current_student)  %>
+              <%= link_to "プロフィールを完成させよう", edit_group_path(@group),class:"complete" %>
+          <% end %>
+          <p style="text-align: center">まだプロフィールがありません</p>
+        <% end %>
+       
+      </div>
+     
+     <div class="var">
+      <% if @group.authorized?(current_student) %>
+          <!--ログイン中の生徒がグループアカウントを保持-->
+        <div class="var_half">
+          <%= link_to 'ユーザーアカウントへ', authorize_update_path %>
+        </div>
+      <% end %>
+     </div>
+  </div>
+  
+          
+    <div class="col-xs-10 col-lg-4">
+      <% if @events.present? %>
+        <h2><%= @group.name %>の新歓一覧 </h2>
+        <div class="event_index">
+          <% if @group.authorized?(current_student) %>
+            <%= link_to  new_group_event_path(@group), method: :get do %>
+              <%= image_tag "new_event.png", :class => 'new_event' , :alt => 'new_event'%>
+            <% end %>
+          <% end %>
+          <% @events.each do |event| %>
+          <!--<div class="background_image" style="background-image: url('images.jpg')">-->
+            <%= render partial: "common/event", locals: { event: event, group: @group } %>
+             <!--主催者:%= event.group.name %>-->
+          <% end %>
+       </div>
+      <%= paginate(@events) %>
+      <% else %>
+        <div class="event_index">
+          <div class="event_none">
+            <p>まだイベントはありません</p>
+            <% if @group.authorized?(current_student) %>
+                  <!--ログイン中の生徒がグループアカウントを保持-->
+              <%= link_to "イベントを作成する",new_group_event_path(@group), class:"button"  %>
+            <% end %>
+           </div>
+         </div>
+      <% end %>
+    </div> 
+    
   </div>
 </div>
 

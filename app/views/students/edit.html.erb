@@ -17,25 +17,25 @@
               </div>
              
               
-               <div class="col-xs-8 col-lg-3">
+               <!--<div class="col-xs-8 col-lg-3">-->
                  <div class="profile_wrapper">
                      <div class="profile_wrapper_edit">
                        <h3><span class="gray">名前：</h3>
                        <%= f.text_field :name, placeholder: "名前", autofocus: true, class: "form-control" %>
                    </div>
                  </div>
-               </div>
+               <!--</div>-->
                
-               <div class="col-xs-8 col-lg-3">
+               <!--<div class="col-xs-8 col-lg-3">-->
                  <div class="profile_wrapper">
                      <div class="profile_wrapper_edit">
                         <h3><span class="gray">学年：</h3>
                         <%= f.select :grade,[ ['1回生', 1],['2回生', 2],['3回生', 3],['4回生', 4]], selected: current_student.grade,placeholder: "学年", class: "form-control"  %>
                      </div>
                  </div>
-               </div>
+               <!--</div>-->
                
-               <div class="col-xs-8 col-lg-3">
+               <!--<div class="col-xs-8 col-lg-3">-->
                  <div class="profile_wrapper">
                      <div class="profile_wrapper_edit">
                       
@@ -48,23 +48,22 @@
                         <% end %>
                      </div>
                  </div>
-               </div>
+               <!--</div>-->
                
-               <div class="col-xs-8 col-lg-3">
+               <!--<div class="col-xs-8 col-lg-3">-->
                  <div class="profile_wrapper">
                      <div class="profile_wrapper_edit">
                           <h3><span class="gray">紹介：</h3>
-                          <%= f.text_field :intro, placeholder: "自己紹介※最大40文字", maxlength: "40" ,class:"form-control"%>
+                          <%= f.text_field :intro, placeholder: "自己紹介※最大60文字", maxlength: "60" ,class:"form-control"%>
                      </div>
-                  
                  </div>
-               </div>
+               <!--</div>-->
                
-                <div class="col-xs-8 col-lg-3">
+                <!--<div class="col-xs-8 col-lg-3">-->
                   <div class="form-save">
                     <%= f.submit "保存", class:"button_save" %>
                   </div>
-               </div>
+               <!--</div>-->
           <% end %>
           <%= link_to student_path(current_student) do%>
             <%= image_tag "back.png" %>

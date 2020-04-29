@@ -3,24 +3,13 @@ class GroupsController < ApplicationController
 #   before_action :move_to_top unless current_student.group
     
     def show 
-        # @conne=Connection.where(student_id: current_student.id) インスタンスではなく配列のようなもの
-        @conne=Connection.where(student_id: current_student.id).first
-        @group=Group.find(params[:id])
-        # binding.pry
-        if current_student.groups.present?&&current_student.groups.first.id==@group.id&&@conne.authority
-            # もし生徒がグループアカウントに紐づけられてて、かつauthorityがtrueなら
-            # プロフィールアイコンから自分のグループページを見るとき
-            # if @group
-            @events=@group.events.order("created_at DESC").page(params[:page]).per(3)
-        else
-            # 普通にグループページを見るとき
-             
-             @events=@group.events.order("created_at DESC").page(params[:page]).per(3)
-        end
-       
-        @today=Date.today
-        # authorize(current_student.connection)
-        # binding.pry
+      # @conne=Connection.where(student_id: current_student.id) インスタンスではなく配列のようなもの
+      @conne=Connection.where(student_id: current_student.id).first
+      @group=Group.find(params[:id])
+      @events=@group.events.order("created_at DESC").page(params[:page]).per(3)
+      @today=Date.today
+      # authorize(current_student.connection)
+      # binding.pry
     end
     
     def search
@@ -29,14 +18,13 @@ class GroupsController < ApplicationController
     end
     
     def edit
-        @conne=Connection.where(student_id: current_student.id).first
-        if current_student.groups.present?&&@conne.authority
-            @group=current_student.groups.first
-           @grade=current_student.grade
-            
-        else
-          redirect_to :show
-        end
+      @group=Group.find(params[:id])
+      if @group.authorized?(current_student,@group)
+        @group=current_student.groups.first
+        @grade=current_student.grade
+      else
+        redirect_to :show
+      end
     end
     
     def update
@@ -45,14 +33,11 @@ class GroupsController < ApplicationController
     #   authority==true
      
     @group=Group.find(params[:id])
-    
-      if  current_student.groups.first.present?&&current_student.groups.first.id==@group.id&&current_student.connections.first.authority
-         
-           current_student.groups.first.update(update_params)
-            
-            redirect_to controller_path: 'show', id: @group.id
+      if  @group.authorized?(current_student,@group)
+        current_student.groups.first.update(update_params)
+        redirect_to controller_path: 'show', id: @group.id
       else
-           redirect_to :show
+        redirect_to :show
       end
     end
     
@@ -64,6 +49,4 @@ class GroupsController < ApplicationController
     def update_params
         params.require(:group).permit(:name,:category,:what_to_do,:intro,:image)
     end
-    
-   
 end

@@ -19,7 +19,7 @@ body{
   font-family: Montserrat, "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif !important;
   
 }
-body,input,textarea,label{
+body,input,textarea{
   font-size:　1.6rem;
   line-height: 2;
   letter-spacing: 0.05em;
@@ -57,7 +57,7 @@ li{
 select {
   -webkit-appearance:none;
   appearance:none;
-  font-size: 22px;
+  font-size: 0.8em;
   border: 2px solid $gray;
 }
 

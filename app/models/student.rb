@@ -7,7 +7,8 @@ class Student < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
- 
+         
+        # アソシエーション
   has_many :applies, dependent: :destroy
   has_many :events, through: :applies
   
@@ -17,26 +18,16 @@ class Student < ApplicationRecord
 #   accepts_nested_attributes_for というkeyは、
 # 他のモデルを一括で更新、保存できるようにするもの
 
-  validates :password, confirmation: true
-  validates :password_confirmation, presence: true
+              # バリデーション
+  validates :password, confirmation: true,on: :create
+  validates :password_confirmation, presence: true,on: :create
   
   # 存在しなかったらエラーになる
   validates_presence_of  :password,:grade,:email,on: :create
-  validates_presence_of :intro ,:preference,:avatar,on: :update
-  # validates :grade, if: :grade_only
+  validates :intro ,presence: { message: 'は60文字までです。' }
+  # :preference,:avatar,on: :update
   # introは40字まで
-  validates :intro,    length: { maximum: 40 }     
-  
-
-  # def grade_only
-  #   if grade==(1||2||3||4)
-      
-  #   elsif grade==nil
-  #     errors.add(:expect_grade, "適切な数字を選択してください")
-  #   elsif 
-  #     errors.add(:expect_grade, "適切な数字を選択してください")
-  #   end
-  # end
+  validates :intro,    length: { maximum: 60 }   
   
   # rubyでは真偽値を返すメソッドには最後に?を付ける
     def full_profile?
