@@ -13,8 +13,8 @@ module ErrorHandlers
     render "errors/forbidden", status: 403
   end
   
-  private def rescue403(e)
-    render "errors/not_found", status: 403
+  private def rescue404(e)
+    render "errors/not_found", status: 404
   end
 
   private def rescue500(e)
