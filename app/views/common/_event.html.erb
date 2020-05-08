@@ -8,7 +8,6 @@
          <% else %>
          <div class="event_image" style="background-color: gray;"></div>
       <% end %>
-    
       <div class="event_content">
         <div class="event_title">
           <h3><%= event.title %></h3>
@@ -27,62 +26,34 @@
       </div>
     <!--<div class="event_image" style="background-image: url%= rails_blob_path(event.image) %) "></div>-->
     <div class="event_bottom">
-        <% if event.group.image.attached? %>
-          <div class="group_image" style="background-image: url(<%= rails_representation_path(event.group.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) ">
-            
-          </div>
-        <% else %>
-          <div class="group_image" style="background-color: gray ">
-            
-          </div>
-        <% end %>
-      <div class="event_group">
-        <%= link_to "#{event.group.name}",  group_path(event.group), method: :get , class: "group"%>
-      </div>
-        <!--% binding.pry %>-->
+         <%= render partial: "common/group", locals: { group: event.group } %>
       <!--グループアカウントが存在  -->
       <% if current_student.connections.present? %>
-      　<!--グループアカウントとしてログイン中なう-->
+      　<!--グループアカウントとしてログイン中-->
         <% if  current_student.connections.first.authority %>
          <!--自分のグループアカウントのイベントなら-->
           <% if event.group.id==current_student.groups.ids.first%>
-          
           <div class="atag_wrapper">
             <%= link_to edit_group_event_path(event.group,event), method: :get  do%>
-             <%= image_tag "edit.png",:class => 'edit_event',:alt => 'edit_event' %>
-           <% end %>
-           <%= link_to "/groups/#{event.group.id}/events/#{event.id}", method: :delete  do%>
-             <%= image_tag "delete.png",:class => 'delete_event',:alt => 'delete_event' %>
-           <% end %>
+              <%= image_tag "edit.png",:class => 'edit_event',:alt => 'edit_event' %>
+            <% end %>
+            <%= link_to "削除",group_event_path(event.group,event), method: :delete ,data: { confirm: "a" }  %>
+              <!--%= image_tag "delete.png",:class => 'delete_event',:alt => 'delete_event' %>-->
+            <!--% end %>-->
           </div>
-           
-           
+          
          <% end %>
            
-         <% else %>
+       <% else %>
          <!--グルアカ保持してるけどauthority==falseだよ-->
          <!--応募済みなら-->
-              <% if event.applies.where(student_id: current_student.id).where(event_id: event.id).present? %>
-               　
-               　　<%= link_to 'キャンセル', "/applies/#{event.applies.where(student_id: current_student.id).where(event_id: event.id).first.id}/events/#{event.id}/delete", method: :get , class: "apply" %>
-               <!--初めての応募なら-->
-              <% else %>
-               　<%= link_to '参加する', new_event_apply_path(event.id), method: :get , class: "apply" %>
-              <% end %>
-        <% end %>
+           <%= render partial: "common/apply", locals: { event: event } %>
+       <% end %>
       
       <% else %>
        <!--グループアカウントが存在しないなら  -->
-        <% if event.applies.where(student_id: current_student.id).where(event_id: event.id).present? %>
-            　
-         　<%= link_to 'キャンセル', "/applies/#{ event.applies.where(student_id: current_student.id).where(event_id: event.id).first.id}/events/#{event.id}/delete", method: :get , class: "apply" %>
-            
-        <% else %>
-            <%= link_to '参加する', new_event_apply_path(event.id), method: :get , class: "apply" %>
-        <% end %>
+        <%= render partial: "common/apply", locals: { event: event } %>
       <% end %>
-      
-      
     </div>
   </div>
 </div>

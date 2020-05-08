@@ -19,11 +19,11 @@ class GroupsController < ApplicationController
     
     def edit
       @group=Group.find(params[:id])
-      if @group.authorized?(current_student,@group)
+      if @group.authorized?(current_student)
         @group=current_student.groups.first
         @grade=current_student.grade
       else
-        redirect_to :show
+        redirect_to :group
       end
     end
     
@@ -31,13 +31,13 @@ class GroupsController < ApplicationController
     #   groupアカウントと紐づいている&&
     #   ログイン中の生徒のgroup==@group&&
     #   authority==true
-     
     @group=Group.find(params[:id])
-      if  @group.authorized?(current_student,@group)
+      if  @group.authorized?(current_student)
         current_student.groups.first.update(update_params)
-        redirect_to controller_path: 'show', id: @group.id
+        flash.notice="プロフィールを更新しました"
+        redirect_to :group
       else
-        redirect_to :show
+        redirect_to :group
       end
     end
     

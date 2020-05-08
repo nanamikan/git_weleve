@@ -30,7 +30,7 @@ class Student < ApplicationRecord
   validates :intro,    length: { maximum: 60 }   
   
   # rubyでは真偽値を返すメソッドには最後に?を付ける
-    def full_profile?
-      name?&&preference?&&intro?&&avatar.attached?  
-    end
+  def full_profile?
+    name?&&preference?&&intro?&&avatar.attached?  
+  end
 end

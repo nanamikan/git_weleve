@@ -17,25 +17,21 @@
           <% end %>  
               
           <h2><%= @group.name %></h2>
-           <!--<div class="col-xs-8 col-lg-3">-->
+        
            <div class="profile_wrapper">
              <h3><span class="gray">分類：</span><%= @group.category %></h3>
            </div>
-           <!--</div>-->
-           
-           <!--<div class="col-xs-8 col-lg-3">-->
+          
             <div class="profile_wrapper">
               <h3><span class="gray">活動：</span><%= @group.what_to_do%></h3>
             </div>
-          <!--</div>-->
          
-          <!--<div class="col-xs-8 col-lg-3">-->
             <div class="intro">
               <div class="profile_wrapper">
                 <h3><span class="gray">紹介：</span> <%= @group.intro.blank??   "このグループの説明はありません" : @group.intro %></h3>
               </div>
             </div>
-          <!--</div>-->
+          
         <% else %> 
         <!--full_profile?がfalseなら-->
           <% if @group.authorized?(current_student)  %>
@@ -55,7 +51,6 @@
       <% end %>
      </div>
   </div>
-  
           
     <div class="col-xs-10 col-lg-4">
       <% if @events.present? %>
@@ -85,7 +80,6 @@
          </div>
       <% end %>
     </div> 
-    
   </div>
 </div>
 

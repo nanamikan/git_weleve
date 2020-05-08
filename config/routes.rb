@@ -6,18 +6,19 @@ Rails.application.routes.draw do
   
   resources :groups, only:[:show,:edit, :update] do
   # resources :applies, only:[:update,:edit,:create] do
+  # 検索した値がパスに含まれるようなルーティングを生成
     collection do
       get 'search'
     end
-    resources :events,only:[:create,:new,:edit, :update,:destroy] 
-    
+    resources :events,except:[:index] 
   end
-    resources :events,only:[:index] do
-      resources :applies, only:[:new,:create,:destroy, :index]
-      collection do
-        get 'search'
-      end
+  
+  resources :events,only:[:index] do
+    resources :applies, only:[:new,:create,:destroy, :index]
+    collection do
+      get 'search'
     end
+  end
       
  
   get '/form'=>'events#form'

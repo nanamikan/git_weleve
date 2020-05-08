@@ -13,4 +13,11 @@ class Event < ApplicationRecord
   
   belongs_to :group
   
+  def authorized?(current_student)
+    if current_student.groups.present? 
+      current_student.groups.first.id=self.group_id && current_student.connections.first.authority 
+    else
+      return false
+    end
+  end
 end

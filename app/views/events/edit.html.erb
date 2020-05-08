@@ -5,7 +5,7 @@
 <div class="col-xs-10 col-lg-4">
    
   <div class="profile">
-    <%= form_for (@event) ,url: group_event_path do |f| %>
+    <%= form_with model: @event ,url: :group_event do |f| %>
       <% if @event.image.attached? %>
          <div class="event_image"><%= image_tag @event.image.variant(combine_options:{resize:"400x100^",crop:"400x100+0+0",gravity: :center}).processed %></div>
       <% else %>
@@ -29,7 +29,7 @@
              <div class="profile_wrapper">
                 <div class="profile_wrapper_edit">
                   <h3><span class="gray">日付：</h3>
-                     <%= f.date_field :date, placeholder: "開催日時"  %>         
+                     <%= f.date_field :date, placeholder: "開催日時" %>         
                 </div>       
              </div>
          </div>
@@ -38,7 +38,7 @@
              <div class="profile_wrapper">
                 <div class="profile_wrapper_edit">
                   <h3><span class="gray">場所：</h3>
-                   <%= f.text_field :where, placeholder: "開催場所※最大20",maxlength: "20" %>           
+                   <%= f.text_field :where, placeholder: "開催場所※最大20",maxlength: "20" ,required: true %>           
                 </div>       
              </div>
           </div>
@@ -46,7 +46,8 @@
              <div class="profile_wrapper">
                 <div class="profile_wrapper_edit">
                  <h3><span class="gray">説明：</h3>
-                  <%= f.text_field :descrip, placeholder: "詳細※最大50文字", maxlength: "50"%>           
+                 <%= f.text_field :descrip, placeholder: "説明※最大20",maxlength: "20" ,required: true %> 
+                  <!--%= f.text_field :descrip, placeholder: "詳細※最大50文字",maxlength: "50"　,required: true %>           -->
                 </div>       
              </div>
          </div>
@@ -56,11 +57,10 @@
          
           <div class="col-xs-8 col-lg-3">
              <div class="form-save">
-                    <%= f.submit "保存" ,class:"button_save" %> 
+                    <%= f.submit "保存" ,class:"button_save",required: true %> 
              </div>
          </div>
-         
-         
+        
          <%= link_to group_path(@group)  do %>
          <%= image_tag "back.png" %>
         <% end %>

@@ -13,18 +13,9 @@
     <div class="event_index">
       <% @groups.each do |group| %>
         <div class="event">
-           <div class="event_bottom">
-            <% if group.image.attached? %>
-              <div class="group_image" style="background-image: url(<%= rails_representation_path(group.image.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) ">
-              </div>
-            <% else %>
-              <div class="group_image" style="background-color: gray ">
-              </div>
-            <% end %>
-            <div class="event_group">
-              <%= link_to "#{group.name}",  group_path(group), method: :get , class: "group"%>
-            </div>
-         </div>
+          <div class="event_bottom">
+            <%= render partial: "common/group", locals: {  group: group } %>
+          </div>
         </div>
       <% end %>
     <%= paginate(@groups) %>
