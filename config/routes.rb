@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root 'events#index'
    
   resources :students,only:[:show,:edit,:update] 
-  
     resources :groups, only:[:show,:edit, :update] do
     # resources :applies, only:[:update,:edit,:create] do
     # 検索した値がパスに含まれるようなルーティングを生成

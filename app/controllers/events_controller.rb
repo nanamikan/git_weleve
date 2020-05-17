@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     group=Group.find(params[:group_id])
     Event.create(title: params_permit[:title], date: params_permit[:date], where: params_permit[:where], descrip: params_permit[:descrip], image:  params_permit[:image],group_id: group.id )
     flash.notice="イベントを追加しました"
-    redirect_to [:group, group]
+    redirect_to controller: 'groups', action: 'show', id: group.id
   end
   
   def edit
@@ -27,10 +27,11 @@ class EventsController < ApplicationController
   end
   
   def update
+    group=Group.find(params[:group_id])
     event=Event.find(params[:id])
     event.update(params_permit)
     flash.notice="イベントを更新しました"
-    redirect_to root_path
+    redirect_to controller: 'groups', action: 'show', id: group.id
   end
   
   def destroy
@@ -61,10 +62,10 @@ class EventsController < ApplicationController
     end
     
     def move_to_top
-      event=Event.find(params[:id])
-      unless event.authorized?(current_student)
+      group=Group.find(params[:group_id])
+      unless group.authorized?(current_student)
         flash.alert="権限がありません"
-        redirect_to root_path
+        redirect_to root_path and return
       end
     end
     
@@ -74,7 +75,9 @@ class EventsController < ApplicationController
       # newとcreateアクションが動く時event変数はまだ定義されてない
       group=Group.find(params[:group_id])
       unless group.authorized?(current_student)
-        redirect_to root_path
+      # and retuenを書かないと、このアクションの後create/newアクションも動いてしまう
+        flash.alert="権限がありません"
+        redirect_to root_path and return
       end
     end
 end
