@@ -38,7 +38,6 @@ class StudentsController < ApplicationController
       end
       current_student.update(update_params)
     end
-   
     redirect_to controller_path: 'show', id: @student.id
   end
   
@@ -50,9 +49,9 @@ class StudentsController < ApplicationController
   
    def authorize(connection)
         @connection=connection
-        # binding.pry
         # メソッドが呼びだされたらauthorityを現在の値とは逆の値にする
         @connection.authority=!(@connection.authority)
         @connection.save
    end
+  
 end

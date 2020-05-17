@@ -13,16 +13,25 @@
       </div>
   
      <div class="icon">
-         <% if current_student.groups.first.authorized?(current_student) %>
-           <%= link_to group_path(current_student.groups.first) do  %>
-             <%= image_tag "profile.png" %>
-           <% end %>
-        <% else %>
-         <!--グループアカウントとしてログイン中ではない-->
-          <%= link_to student_path(current_student) do %>
-            <%= image_tag "profile.png" %>
-          <% end %>
-        <% end %>  
+        <% if current_student.groups.present? %>
+      <!--現在ログイン中のユーザーがグループアカウントを保有-->
+          <% if current_student.connections.first.authority %>
+          <!--グループアカウントとしてログイン中-->
+             <%= link_to group_path(current_student.groups.first) do  %>
+               <%= image_tag "profile.png" %>
+             <% end %>
+          <% else %>
+           <!--グループアカウントとしてログイン中ではない-->
+            <%= link_to student_path(current_student) do %>
+              <%= image_tag "profile.png" %>
+            <% end %>
+          <% end %>  
+       <% else %>
+        <!--現在ログイン中のユーザーがグループアカウントを保有してない-->
+         <%= link_to student_path(current_student) do %>
+          <%= image_tag "profile.png" %>
+         <% end %>
+    　 <% end %>
     </div>
   </div>
 </footer>

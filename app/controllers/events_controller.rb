@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  # テストのためいったんコメントアウト
+  
   before_action :move_to_top, only: [ :update, :edit, :destroy]
   before_action :move_to_top_new, only: [:new,:create]
   
@@ -15,10 +15,10 @@ class EventsController < ApplicationController
   end
   
   def create
-    @group=Group.find(params[:group_id])
-    Event.create(title: params_permit[:title], date: params_permit[:date], where: params_permit[:where], descrip: params_permit[:descrip], image:  params_permit[:image],group_id: @group.id )
+    group=Group.find(params[:group_id])
+    Event.create(title: params_permit[:title], date: params_permit[:date], where: params_permit[:where], descrip: params_permit[:descrip], image:  params_permit[:image],group_id: group.id )
     flash.notice="イベントを追加しました"
-    redirect_to controller: 'groups', action: 'show',id: @group.id
+    redirect_to [:group, group]
   end
   
   def edit

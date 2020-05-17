@@ -34,12 +34,12 @@
          <!--自分のグループアカウントのイベントなら-->
           <% if event.group.id==current_student.groups.ids.first%>
           <div class="atag_wrapper">
-            <%= link_to edit_group_event_path(event.group,event), method: :get  do%>
+            <%= link_to edit_group_event_path(event.group,event), method: :get  do %>
               <%= image_tag "edit.png",:class => 'edit_event',:alt => 'edit_event' %>
             <% end %>
-            <%= link_to "削除",group_event_path(event.group,event), method: :delete ,data: { confirm: "a" }  %>
-              <!--%= image_tag "delete.png",:class => 'delete_event',:alt => 'delete_event' %>-->
-            <!--% end %>-->
+            <%= link_to group_event_path(event.group,event), method: :delete do  %>
+              <%= image_tag "delete.png",:class => 'delete_event',:alt => 'delete_event' %>
+            <% end %>
           </div>
           
          <% end %>

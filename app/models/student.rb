@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
 # ユーザーのレコードと画像を紐づけることができます
-     # ユーザーテーブルにカラムを追加する必要はありません。
+# ユーザーテーブルにカラムを追加する必要はありません。
   has_one_attached :avatar
 
   # Include default devise modules. Others available are:
@@ -18,7 +18,7 @@ class Student < ApplicationRecord
 #   accepts_nested_attributes_for というkeyは、
 # 他のモデルを一括で更新、保存できるようにするもの
 
-              # バリデーション
+ # バリデーション
   validates :password, confirmation: true,on: :create
   validates :password_confirmation, presence: true,on: :create
   

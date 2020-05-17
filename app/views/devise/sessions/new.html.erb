@@ -18,12 +18,12 @@
       <%= f.password_field :password,  placeholder:"パスワード", class:"form",autocomplete: "new-password" %>
     </div>
   
-    <% if devise_mapping.rememberable? %>
-       <div class='checkbox'>
-                <input id='user_remember_me' name='user[remember_me]' type='checkbox' value='1'>
-                <%= f.label :remember_me, 'ログイン情報を記憶する', class: 'memory-check' %>
-          </div>
-    <% end %>
+    <!--% if devise_mapping.rememberable? %>-->
+       <!--<div class='checkbox'>-->
+       <!--         <input id='user_remember_me' name='user[remember_me]' type='checkbox' value='1'>-->
+       <!--         <%= f.label :remember_me, 'ログイン情報を記憶する', class: 'memory-check' %>-->
+       <!--   </div>-->
+  <!--% end %>-->
   
     <div class="actions">
       <%= f.submit "ログイン" %>
