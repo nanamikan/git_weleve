@@ -1,12 +1,10 @@
-# Group.create(id: 1, name: 'サークル1')
-# Connection.create(student_id: 1, group_id: 1)
-# Group.create(id: 2, name: 'パリピ')
-# Group.create(id: 3, name: 'みかん同好会')
-# Group.create(id: 4, name: '水泳体育会')
-# Connection.create(student_id: 11, group_id:  2)
-# Connection.create(student_id: 21, group_id:  3)
+table_names= %w(students groups events connections)
 
- Group.create(id: 5, name: 'バジリッサ')
- Connection.create(student_id: 31, group_id:  5)
-
+table_names.each do |table_name|
+  path=Rails.root.join("db", "seeds", Rails.env, "#{table_name}.rb")
+  if File.exist?(path)
+    puts"Creating #{table_name}...."
+    require(path)
+  end
+end
 

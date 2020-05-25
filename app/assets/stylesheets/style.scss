@@ -28,7 +28,8 @@ body,input,textarea{
   // box-sizing: box;　//ressで定義済み
 }
 
-#error_explanation {
+#error_explanation 
+{
   padding: 5px 2px;
   font-size: 12px;
  @extend .error_message;
@@ -71,7 +72,8 @@ input{
   padding-bottom: 7vh;
 }
 
-.container{
+.container
+{
   // top: 0.5vh;
   overflow: scroll;
   // margin: 0 10%;
@@ -119,22 +121,22 @@ h2{
   border-bottom: solid 4px #627295;
   border-radius: 3px;
   &:active{
-     -webkit-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
     transform: translateY(4px);/*下に動く*/
     border-bottom: none;/*線を消す*/
   } 
   
 }
  .form{
-       border: none;
-            &:focus {
-            // box-shadow: 0 0 3px $lightblue;
-            border-bottom: 2px solid $lightblue;
-            /*フォーカスしたときのトランジション設定 すべてのプロパティが0.5秒で切り替わる*/
-            transition: all 0.5s;
-                  }
-        }
-        
+   border: none;
+        &:focus {
+        // box-shadow: 0 0 3px $lightblue;
+        border-bottom: 2px solid $lightblue;
+        /*フォーカスしたときのトランジション設定 すべてのプロパティが0.5秒で切り替わる*/
+        transition: all 0.5s;
+              }
+    }
+    
 footer{
   width: 100%;
   margin: 0 auto;
@@ -169,20 +171,22 @@ footer{
 }
 
 
-.form-save{
-            width: 100%;
-            display: flex;
-            text-align: center;
-            
-             .button_save{
-            @extend .button;
-            width: 20%;
-            min-width: 50px;
-            margin: 5% auto;
-          }
+.form-save
+{
+    width: 100%;
+    display: flex;
+    text-align: center;
+     .button_save
+     {
+      @extend .button;
+      width: 20%;
+      min-width: 50px;
+      margin: 5% auto;
+    }
 }
 
-.error_message{
+.error_message
+{
    background-color: $orange;
    margin: 1% 5%;
    text-align: center;

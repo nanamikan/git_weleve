@@ -13,7 +13,7 @@ class Student < ApplicationRecord
   has_many :connections, dependent: :destroy
   has_many :groups, through: :connections
   # 他のモデルを一括で更新、保存
-  accepts_nested_attributes_for :connections
+  # accepts_nested_attributes_for :connections
  
   validates :password, confirmation: true,on: :create
   validates :password_confirmation, presence: true,on: :create

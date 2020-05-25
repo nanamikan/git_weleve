@@ -26,15 +26,17 @@ This is a web application that every student can see "welcome event(新歓)" by 
 # Usage
 you can access to the app from here
 https://weleve.herokuapp.com/students/sign_in
+
+test account
+email: "1@test.com"
+password: "password"
  
 # Note
  
 
  
 # Author
- 
 
- 
 * Nana Matsui
 * 
 * nana.mikan_love.0627@i.softbank.jp

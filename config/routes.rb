@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :students
   root 'events#index'
-   
   resources :students,only:[:show,:edit,:update] 
     resources :groups, only:[:show,:edit, :update] do
     # resources :applies, only:[:update,:edit,:create] do
@@ -21,5 +20,4 @@ Rails.application.routes.draw do
   get '/form'=>'events#form'
   get '/authorize/update'=>'students#authorize_update'
   get '/applies/:id/events/:event_id/delete'=>'applies#delete_confirm'
-  
 end

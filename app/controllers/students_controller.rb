@@ -4,9 +4,9 @@ class StudentsController < ApplicationController
     @student=Student.find(params[:id])
     @events=@student.events.page(params[:page]).per(3).all.order("created_at DESC")
     if @student==current_student
-        if current_student.groups.present?
-            @group=current_student.groups.first
-        end
+      if current_student.groups.present?
+          @group=current_student.groups.first
+      end
     end
   end
   

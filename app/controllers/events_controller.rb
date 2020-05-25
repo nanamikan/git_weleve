@@ -5,7 +5,6 @@ class EventsController < ApplicationController
   
   def index
     @events=Event.includes(:group).all.order("date DESC").page(params[:page]).per(4)
-    # @events=Event.includes(:groups).all.order("created_at DESC").page(params[:page]).per(3)
     @apply=Apply.find_by(student_id: current_student.id)
   end
   
@@ -57,7 +56,6 @@ class EventsController < ApplicationController
   
   private
     def params_permit
-      # form_tagを利用しているので.requireは必要ない
       params.require(:event).permit(:title,:date,:descrip,:where,:image)
     end
     
@@ -68,9 +66,7 @@ class EventsController < ApplicationController
         redirect_to root_path and return
       end
     end
-    
-    # グループとしてログイン済みのユーザーが他のグループのeventを操作
-    # しようとしてもリダイレクトされる
+  
     def move_to_top_new
       # newとcreateアクションが動く時event変数はまだ定義されてない
       group=Group.find(params[:group_id])
