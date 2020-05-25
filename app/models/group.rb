@@ -1,6 +1,5 @@
 class Group < ApplicationRecord
-# ユーザーのレコードと画像を紐づけることができます
-# ユーザーテーブルにカラムを追加する必要はありません。
+
   has_one_attached :image 
    
   # 親テーブルのデータが消えたら子テーブル(connections)のデータも消す
@@ -9,15 +8,12 @@ class Group < ApplicationRecord
   accepts_nested_attributes_for :connections
   
   has_many :events, dependent: :destroy
-  
-  # category5字まで
+ 
   validates :category,    length: { maximum: 5 }     
-  # what_to_do10文字
   validates :what_to_do,    length: { maximum: 10 }     
-  # intro40字まで
   validates :intro,    length: { maximum: 60 }   
    
-# user側からgroupをcreateすることはないので
+
   validates_presence_of :name,:what_to_do,:category,:intro ,:image, on: :update
  
   def full_profile?
