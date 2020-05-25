@@ -1,24 +1,42 @@
-# README
+#Name
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+weleve
 
-Things you may want to cover:
+This is a web application that every student can see "welcome event(新歓)" by every circle or team
+ 
+# DEMO
+ 
 
-* Ruby version
 
-* System dependencies
+ 
+# Features
+ 
 
-* Configuration
+ 
+# Requirement
+ 
+ ruby 2.5.1p57 
+ Rails 5.2.4.2
 
-* Database creation
+ 
+# Installation
+ 
 
-* Database initialization
+ 
+# Usage
+you can access to the app from here
+https://weleve.herokuapp.com/students/sign_in
+ 
+# Note
+ 
 
-* How to run the test suite
+ 
+# Author
+ 
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ 
+* Nana Matsui
+* 
+* nana.mikan_love.0627@i.softbank.jp
+ 
+# License
