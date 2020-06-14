@@ -2,9 +2,9 @@ class Student < ApplicationRecord
   has_one_attached :avatar
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # , :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,:confirmable
          
   has_many :student_events, dependent: :destroy
   has_many :events, through: :student_events
@@ -21,7 +21,7 @@ class Student < ApplicationRecord
     name?&&preference?&&intro?&&avatar.attached?  
   end
   
-  #current_studentがgroupとしてログインしていて、かつ、group
+  #current_studentがgroupとしてログインしていて、かつ、閲覧中のページのグループが引数
   def group_authorized(group)
     if self.groups.present?
       if self.student_groups.first.authority?
