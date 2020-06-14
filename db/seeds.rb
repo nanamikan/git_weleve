@@ -1,4 +1,4 @@
-table_names= %w(students groups events connections)
+table_names= %w(students groups events student_groups student_events)
 
 table_names.each do |table_name|
   path=Rails.root.join("db", "seeds", Rails.env, "#{table_name}.rb")

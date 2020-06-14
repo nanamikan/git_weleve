@@ -8,13 +8,11 @@
           <% else %>
             <div class="icon_image" style="background-color: gray ">
           <% end %>
-          
-          <% if @group.authorized?(current_student) %>
+          <% if current_student.group_authorized(@group) %>
             <%= link_to edit_group_path(@group), { class:"edit" }  do %>
               <%= image_tag "edit.png",:class => 'edit_student',:alt => 'edit_student' %>
             <% end %>
-          <% end %>  
-              
+          <% end %>
           <h2><%= @group.name %></h2>
            <div class="profile_wrapper">
              <h3><span class="gray">分類：</span><%= @group.category %></h3>
@@ -27,21 +25,19 @@
                 <h3><span class="gray">紹介：</span> <%= @group.intro.blank??   "このグループの説明はありません" : @group.intro %></h3>
               </div>
             </div>
-        <% else %> 
-        <!--full_profile?がfalseなら-->
-          <% if @group.group_authorized?(current_student)  %>
-              <%= link_to "プロフィールを完成させよう", edit_group_path(@group),class:"complete" %>
+        <% else %> <!--full_profile?がfalseなら-->
+          <% if current_student.group_authorized(@group)  %>
+              <%= link_to "プロフィールを完成させよう", edit_group_path(@group), class:"complete" %>
           <% else %>
-           <p style="text-align: center">まだプロフィールがありません</p>
+           <h3 style="text-align: center">まだプロフィールがありません</h3>
           <% end %>
         <% end %>
       </div>
      
      <div class="var">
-      <% if @group.group_authorized?(current_student) %>
-          <!--ログイン中の生徒がグループアカウントを保持-->
+      <% if current_student.group_authorized(@group) %>
         <div class="var_half">
-          <%= link_to 'ユーザーアカウントへ', authorize_update_path %>
+          <%= link_to 'ユーザーアカウントへ', group_logout_path %>
         </div>
       <% end %>
      </div>
@@ -51,7 +47,7 @@
       <% if @events.present? %>
         <h2><%= @group.name %>の新歓一覧 </h2>
         <div class="event_index">
-          <% if @group.authorized?(current_student) %>
+          <% if current_student.group_authorized(@group) %>
             <%= link_to  new_group_event_path(@group), method: :get do %>
               <%= image_tag "new_event.png", :class => 'new_event' , :alt => 'new_event'%>
             <% end %>
@@ -65,8 +61,7 @@
         <div class="event_index">
           <div class="event_none">
             <p>まだイベントはありません</p>
-            <% if @group.group_authorized?(current_student) %>
-                  <!--ログイン中の生徒が現在アクセスしているグループと一致-->
+            <% if current_student.group_authorized(@group) %>
               <%= link_to "イベントを作成する",new_group_event_path(@group), class:"button"  %>
             <% end %>
            </div>

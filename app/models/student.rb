@@ -1,5 +1,4 @@
 class Student < ApplicationRecord
-# ユーザーのレコードと画像を紐づけ
   has_one_attached :avatar
 
   # Include default devise modules. Others available are:
@@ -7,13 +6,11 @@ class Student < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  has_many :applies, dependent: :destroy
-  has_many :events, through: :applies
-  
-  has_many :connections, dependent: :destroy
-  has_many :groups, through: :connections
-  # 他のモデルを一括で更新、保存
-  # accepts_nested_attributes_for :connections
+  has_many :student_events, dependent: :destroy
+  has_many :events, through: :student_events
+  has_many :student_groups, dependent: :destroy
+  has_many :groups, through: :student_groups
+  accepts_nested_attributes_for :student_groups
  
   validates :password, confirmation: true,on: :create
   validates :password_confirmation, presence: true,on: :create
@@ -23,4 +20,31 @@ class Student < ApplicationRecord
   def full_profile?
     name?&&preference?&&intro?&&avatar.attached?  
   end
+  
+  #current_studentがgroupとしてログインしていて、かつ、group
+  def group_authorized(group)
+    if self.groups.present?
+      if self.student_groups.first.authority?
+        if self.groups.first.id == group.id
+          return true
+        else
+          return false
+        end
+      end
+    else
+      return false
+    end
+  end
+  
+  #current_studentがgroupとしてログインしているかどうかを調べる
+  def group_logged_in
+    if self.groups.present?
+      if self.student_groups.first.authority
+        return true
+      end
+    else
+      return false
+    end
+  end
+  
 end

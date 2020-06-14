@@ -11,27 +11,16 @@
             <%= image_tag "search.png" %>
           <% end %>
       </div>
-  
      <div class="icon">
-        <% if current_student.groups.present? %>
-      <!--現在ログイン中のユーザーがグループアカウントを保有-->
-          <% if current_student.connections.first.authority %>
-          <!--グループアカウントとしてログイン中-->
-             <%= link_to group_path(current_student.groups.first) do  %>
-               <%= image_tag "profile.png" %>
-             <% end %>
-          <% else %>
-           <!--グループアカウントとしてログイン中ではない-->
+        <% if current_student.group_logged_in %>
+            <%= link_to group_path(current_student.groups.first) do  %>
+              <%= image_tag "profile.png" %>
+            <% end %>
+        <% else %>
             <%= link_to student_path(current_student) do %>
               <%= image_tag "profile.png" %>
             <% end %>
-          <% end %>  
-       <% else %>
-        <!--現在ログイン中のユーザーがグループアカウントを保有してない-->
-         <%= link_to student_path(current_student) do %>
-          <%= image_tag "profile.png" %>
-         <% end %>
-    　 <% end %>
+       <% end %>
     </div>
   </div>
 </footer>

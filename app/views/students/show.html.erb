@@ -1,6 +1,5 @@
 <div class="row form">
   <div class="col-lg-12">
-            <!--プロフィールが完成しているなら-->
     <div class="col-xs-10 col-lg-4">
       <div class="profile">
         <% if @student.full_profile? %>
@@ -8,22 +7,19 @@
              <div class="icon_image" style="background-image: url(<%= rails_representation_path(@student.avatar.variant(combine_options:{resize:"100x100^",crop:"100x100+0+0",gravity: :center}).processed) %>) ">
               </div>
            <% else %>
-             <div class="icon_image" style="background-color: gray "></div>
+             <div class="icon_image" style="background-color: gray"></div>
            <% end %>
            
            <% if current_student.id==@student.id %>
-           <!--ログインしてるユーザー=このユーザーページのユーザー-->
-             <%= link_to  edit_student_path(current_student), {class:"edit"} do %>
+             <%= link_to  edit_student_path(current_student), { class: "edit" } do %>
                <%= image_tag "edit.png" %>
              <% end %>
            <% end %>
               
             <h2><%=@student.name%></h2>
-         
               <div class="profile_wrapper">
                 <h3><span class="gray">学年：</span><%= @student.grade%>回生</h3></br>
               </div>
-       
               <div class="profile_wrapper">
                 <% if @student.grade==1 %>
                   <h3><span class="gray">希望体：</span><%= @student.preference%></h3></br>
@@ -31,16 +27,14 @@
                   <h3><span class="gray">所属：</span><%= @student.preference%></h3></br>
                 <% end %>
              </div>
-           
              <div class="intro">
                <div class="profile_wrapper">
                   <h3><span class="gray">自己紹介：</span><%= @student.intro %></h3>
                </div>
             </div>
           
-        <% else %>
-         <!--プロフィールが完成していないなら-->
-           <% if current_student.id==@student.id %>
+        <% else %>   <!--プロフィールが完成していないなら-->
+           <% if current_student.id == @student.id %>
              <%= link_to "プロフィールを完成させよう！", edit_student_path(@student), class:"complete" %>
            <% else %>
              <h3>まだプロフィールが作成されていません</h3>
@@ -49,26 +43,20 @@
       </div>  <!--profile-->
          
       <div class="var">
-       <% if current_student.id==@student.id %>
+       <% if current_student.id == @student.id %>
          <div class="var_half">
-           
             <%= link_to "ログアウト", destroy_student_session_path, method: :delete %>
          </div>
-         
          <div class="var_half">
            <% if @group.present? %>
-           <!--connectionsテーブルに生徒とグループのつながりが書いてある時-->
-           <!--グループページへのリンクが張られる-->
-               <%= link_to 'グループアカウント',authorize_update_path %>
+               <%= link_to 'グループアカウント',group_login_path %>
            <% end %>
          </div>
        <% end %>
       </div>
-    </div>   
-    
+    </div>
 
     <% if @events.present? %>
-    <!--この生徒が応募したイベントが存在するならば-->
       <div class="event_index">
         <h2>応募一覧</h2>
           <% current_student.events.each do |event| %>
@@ -76,9 +64,7 @@
           <% end %>
           <%= paginate(@events) %>
       </div> 
-      <!--イベント関連は終了-->
     <% end %>
-    
   </div>
 </div>
 

@@ -1,8 +1,8 @@
 class Event < ApplicationRecord
   # attr_accessor :group_id
   has_one_attached :image 
-  has_many :applies, dependent: :destroy
-  has_many :students, through: :applies
+  has_many :student_events, dependent: :destroy
+  has_many :students, through: :student_events
   # accepts_nested_attributes_for :appresence: true
   # 画像はつけなくてもevent作成可能
   validates_presence_of  :title,:image,:date,:descrip, :where,:group_id

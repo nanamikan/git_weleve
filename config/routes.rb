@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   end
   
   resources :events,only:[:index] do
-    resources :applies, only:[:new,:create,:destroy, :index]
+    resources :student_events, only:[:new,:create,:destroy, :index]
       collection do
         get 'search'
       end
   end
+  
   get '/form'=>'events#form'
-  get '/authorize/update'=>'students#authorize_update'
-  get '/applies/:id/events/:event_id/delete'=>'applies#delete_confirm'
+  get '/group/login'=>'groups#group_login'
+  get '/group/logout'=>'groups#group_logout'
+  get '/student_events/:id/events/:event_id/delete'=>'student_events#delete_confirm',as: :apply_delete
 end

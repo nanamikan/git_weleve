@@ -1,6 +1,6 @@
-class Connection < ApplicationRecord
+class StudentGroup < ApplicationRecord
   belongs_to :student
   belongs_to :group
-  # studentが属するgroupは1つのみ
+  # 1人のstudentが属するgroupは1つのみ
   validates :student_id, uniqueness: true
 end

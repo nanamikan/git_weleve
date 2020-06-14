@@ -1,4 +1,16 @@
-ActiveRecord::Schema.define(version: 2020_05_08_145347) do
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 2020_06_12_151558) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -19,26 +31,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_145347) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  create_table "applies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "student_id"
-    t.bigint "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_applies_on_event_id"
-    t.index ["student_id"], name: "index_applies_on_student_id"
-  end
-
-  create_table "connections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "student_id", null: false
-    t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "authority", default: false
-    t.index ["group_id"], name: "index_connections_on_group_id"
-    t.index ["student_id"], name: "index_connections_on_student_id"
-    t.index ["student_id"], name: "student_id", unique: true
   end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,6 +54,26 @@ ActiveRecord::Schema.define(version: 2020_05_08_145347) do
     t.index ["name"], name: "index_groups_on_name"
   end
 
+  create_table "student_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_student_events_on_event_id"
+    t.index ["student_id"], name: "index_student_events_on_student_id"
+  end
+
+  create_table "student_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "authority", default: false
+    t.index ["group_id"], name: "index_student_groups_on_group_id"
+    t.index ["student_id"], name: "index_student_groups_on_student_id"
+    t.index ["student_id"], name: "student_id", unique: true
+  end
+
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -79,9 +91,9 @@ ActiveRecord::Schema.define(version: 2020_05_08_145347) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "applies", "events"
-  add_foreign_key "applies", "students"
-  add_foreign_key "connections", "groups"
-  add_foreign_key "connections", "students"
   add_foreign_key "events", "groups"
+  add_foreign_key "student_events", "events"
+  add_foreign_key "student_events", "students"
+  add_foreign_key "student_groups", "groups"
+  add_foreign_key "student_groups", "students"
 end

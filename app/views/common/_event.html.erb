@@ -3,8 +3,7 @@
    
        <% if event.image.attached? %>
          <div class="event_image"style="background-image: url(<%= rails_representation_path(event.image.variant(combine_options:{resize:"400x100^",crop:"400x100+0+0",gravity: :center}).processed) %>) ">
-           <!--%= image_tag event.image.variant(combine_options:{resize:"400x100^",crop:"400x100+0+0",gravity: :center}).processed %>-->
-           </div>
+         </div>
          <% else %>
          <div class="event_image" style="background-color: gray;"></div>
       <% end %>
@@ -24,35 +23,26 @@
             <%= simple_format(event.descrip)%>
           </div>
       </div>
-    <!--<div class="event_image" style="background-image: url%= rails_blob_path(event.image) %) "></div>-->
+    
     <div class="event_bottom">
          <%= render partial: "common/group", locals: { group: event.group } %>
-      <!--グループアカウントが存在  -->
-      <% if current_student.connections.present? %>
-      　<!--グループアカウントとしてログイン中-->
-        <% if  current_student.connections.first.authority %>
-         <!--自分のグループアカウントのイベントなら-->
-          <% if event.group.id==current_student.groups.ids.first%>
+      <% if current_student.student_groups.present? %>
+        <% if  current_student.student_groups.first.authority %>
+          <% if event.group.id == current_student.groups.ids.first%>
           <div class="atag_wrapper">
             <%= link_to edit_group_event_path(event.group,event), method: :get  do %>
-              <%= image_tag "edit.png",:class => 'edit_event',:alt => 'edit_event' %>
+              <%= image_tag "edit.png", :class => 'edit_event',:alt => 'edit_event' %>
             <% end %>
             <%= link_to group_event_path(event.group,event), method: :delete do  %>
-              <%= image_tag "delete.png",:class => 'delete_event',:alt => 'delete_event' %>
+              <%= image_tag "delete.png", :class => 'delete_event',:alt => 'delete_event' %>
             <% end %>
           </div>
-          
          <% end %>
-           
        <% else %>
-         <!--グルアカ保持してるけどauthority==falseだよ-->
-         <!--応募済みなら-->
-           <%= render partial: "common/apply", locals: { event: event } %>
+           <%= render partial: "common/student_event", locals: { event: event } %>
        <% end %>
-      
       <% else %>
-       <!--グループアカウントが存在しないなら  -->
-        <%= render partial: "common/apply", locals: { event: event } %>
+        <%= render partial: "common/student_event", locals: { event: event } %>
       <% end %>
     </div>
   </div>

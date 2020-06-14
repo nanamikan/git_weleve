@@ -1,5 +1,0 @@
-<% if event.applies.where(student_id: current_student.id).where(event_id: event.id).present? %>
-  <%= link_to 'キャンセル', "/applies/#{ event.applies.where(student_id: current_student.id).where(event_id: event.id).first.id}/events/#{event.id}/delete", method: :get , class: "apply" %>
-<% else %>
-  <%= link_to '参加する', new_event_apply_path(event.id), method: :get , class: "apply" %>
-<% end %>
